@@ -86,29 +86,22 @@ typedef struct  	s_scene
 	void			*win;
 	t_map 			map;
 	int 			h;
-	int 			incx;
-	int 			incy;
 	double 			scale;
-	t_vector 		origin;
 	t_vector		v;
 	t_vector		center;
 	int 			projection;
 	char 			*name;
 }					t_scene;
 
-void				ft_init(t_map map, char *name, int projection);
-
-void				ft_reload(t_scene scn);
-void				ft_draw_x(t_scene scn, t_vector a, t_vector b);
-void				ft_draw_y(t_scene scn, t_vector a, t_vector b);
+void				ft_init(t_map map, char *name);
 
 void 				ft_draw_line(t_scene scn, t_vector a, t_vector b);
 
 void				ft_clear_list(t_line *lst);
 
-t_map				ft_read_file(char *name);
+t_map				ft_read_file(char *name, int h);
 
-t_width				ft_split_to_int(char *s, char c, int l);
+t_width				ft_split_to_int(char *s, char c, int l, int h);
 
 int					get_next_line(int const fd, char **line);
 

@@ -19,19 +19,16 @@ SRC = 	$(SRCPATH)/main.c\
 		$(READPATH)/get_next_line.c\
 		$(READPATH)/ft_save_map.c\
 		$(READPATH)/ft_split_to_int.c\
-		$(DRAWPATH)/ft_draw_line.c\
 		$(DRAWPATH)/ft_bresenham.c\
+		$(DRAWPATH)/ft_draw.c\
+		$(HOOKPATH)/ft_hook.c\
+		$(HOOKPATH)/ft_transform.c\
 		$(UTILPATH)/ft_debug.c\
 		$(UTILPATH)/ft_clear_memory.c\
 		$(UTILPATH)/ft_vector.c\
-		$(HOOKPATH)/ft_hook.c\
 		$(MATRIXPATH)/ft_apply_matrix.c\
-		$(MATRIXPATH)/ft_draw_matrix.c\
-		$(MATRIXPATH)/ft_hook_matrix.c\
 		$(MATRIXPATH)/ft_matrix.c\
-		$(MATRIXPATH)/ft_matrix_init.c\
-		$(MATRIXPATH)/ft_transform.c\
-
+		$(MATRIXPATH)/ft_init_matrix.c\
 
 OBJ = $(SRC:.c=.o)
 
