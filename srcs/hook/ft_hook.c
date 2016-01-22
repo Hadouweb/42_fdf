@@ -28,17 +28,18 @@ int		ft_hook_translate(int keycode, t_scene *scn)
 int		ft_hook_rotate(int keycode, t_scene *scn)
 {
 	if (keycode == KEY_ROTZ_LEFT)
-		ft_rotation(*scn, -(5 * M_PI / 180), 'z');
+		scn->v = ft_get_vector(0.0, 0.0, -(5 * M_PI / 180), 1.0);
 	if (keycode == KEY_ROTZ_RIGHT)
-		ft_rotation(*scn, 5 * M_PI / 180, 'z');
+		scn->v = ft_get_vector(0.0, 0.0, 5 * M_PI / 180, 1.0);
 	if (keycode == KEY_ROTX_TOP)
-		ft_rotation(*scn, -(5 * M_PI / 180), 'x');
+		scn->v = ft_get_vector(-(5 * M_PI / 180), 0.0, 0.0, 1.0);
 	if (keycode == KEY_ROTX_BOT)
-		ft_rotation(*scn, 5 * M_PI / 180, 'x');
+		scn->v = ft_get_vector(5 * M_PI / 180, 0.0, 0.0, 1.0);
 	if (keycode == KEY_ROTY_LEFT)
-		ft_rotation(*scn, -(5 * M_PI / 180), 'y');
+		scn->v = ft_get_vector(0.0, -(5 * M_PI / 180), 0.0, 1.0);
 	if (keycode == KEY_ROTY_RIGHT)
-		ft_rotation(*scn, 5 * M_PI / 180, 'y');
+		scn->v = ft_get_vector(0.0, 5 * M_PI / 180, 0.0, 1.0);
+	ft_rotation(*scn, scn->v);
 	return (1);
 }
 

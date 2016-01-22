@@ -12,6 +12,13 @@
 
 #include "fdf.h"
 
+void	ft_init_vector(t_scene *scn)
+{
+	scn->scale = ft_get_vector(20.0, 20.0, 2.0, 1.0);
+	scn->rot = ft_get_vector(0.0, 0.0, 0.0, 1.0);
+	scn->trans = ft_get_vector(1.0, 1.0, 1.0, 1.0);
+}
+
 void	ft_init(t_map map, char *name)
 {
 	t_scene	scn;
@@ -20,16 +27,14 @@ void	ft_init(t_map map, char *name)
 	scn.win = mlx_new_window(scn.mlx, SIZE_W, SIZE_H, "FDF");
 	scn.map = map;
 	scn.h = 1;
-	scn.scale.x = 20;
-	scn.scale.y = 20;
-	scn.scale.z = 2;
 	scn.v = ft_get_vector(0.0, 0.0, 0.0, 1.0);
 	scn.center = ft_get_center(scn);
 	scn.projection = 1;
 	scn.name = ft_strdup(name);
+	ft_init_vector(&scn);
 
-	ft_scale(scn, scn.scale);
-	ft_reload(&scn);
+	ft_scale(scn, scn.v);
+	//ft_reload(&scn);
 
 	mlx_hook(scn.win, 2, 3, ft_hook, &scn);
 

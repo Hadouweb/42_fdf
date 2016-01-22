@@ -9,7 +9,7 @@ void	ft_scale_matrix(double matrix[4][4], t_vector v)
 	matrix[3][3] = 1.0;
 }
 
-void	ft_translation_matrix(t_vector v, double matrix[4][4])
+void	ft_translation_matrix(double matrix[4][4], t_vector v)
 {
 	matrix[0][3] = v.x;
 	matrix[1][3] = v.y;

@@ -87,6 +87,8 @@ typedef struct  	s_scene
 	t_map 			map;
 	int 			h;
 	t_vector 		scale;
+	t_vector		rot;
+	t_vector		trans;
 	t_vector		v;
 	t_vector		center;
 	int 			projection;
@@ -114,7 +116,7 @@ void				ft_print_map(t_map map);
 t_vector			ft_get_vector(double x, double y, double z, double w);
 t_vector    		ft_get_center(t_scene scn);
 
-t_vector			ft_apply_matrix(double m[4][4], t_vector *v, t_vector center);
+t_vector			ft_apply_matrix(double m[4][4], t_vector v, t_vector center);
 void				ft_apply_all_vector(double matrix[4][4], t_scene scn);
 
 void				ft_reload(t_scene *scn);
@@ -129,7 +131,7 @@ int					ft_translate_hiso(int keycode, t_scene *scn);
 int					ft_elevation_hiso(int keycode, t_scene *scn);
 
 void				ft_scale_matrix(double matrix[4][4], t_vector v);
-void				ft_translation_matrix(t_vector v, double matrix[4][4]);
+void				ft_translation_matrix(double matrix[4][4], t_vector v);
 void				ft_rotation_matrix_x(double rot, double m[4][4]);
 void				ft_rotation_matrix_y(double rot, double m[4][4]);
 void				ft_rotation_matrix_z(double rot, double m[4][4]);
@@ -137,7 +139,7 @@ void				ft_rotation_matrix_z(double rot, double m[4][4]);
 void				ft_identity_matrix(double matrix[4][4]);
 
 void 				ft_translation(t_scene scn, t_vector v);
-void				ft_rotation(t_scene scn, double rot, char c);
+void				ft_rotation(t_scene scn, t_vector rot);
 void				ft_scale(t_scene scn, t_vector v);
 void				ft_up_z(t_scene scn, int h);
 
