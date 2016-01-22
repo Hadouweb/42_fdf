@@ -1,10 +1,11 @@
 #include "fdf.h"
 
-void	ft_scale_matrix(double matrix[4][4], double scale)
+void	ft_scale_matrix(double matrix[4][4], t_vector v)
 {
-	matrix[0][0] = scale;
-	matrix[1][1] = scale;
-	matrix[2][2] = scale;
+	ft_print_vector(v);
+	matrix[0][0] = v.x;
+	matrix[1][1] = v.y;
+	matrix[2][2] = v.z;
 	matrix[3][3] = 1.0;
 }
 

@@ -1,13 +1,13 @@
 #include "fdf.h"
 
-void	ft_reload_matrix(t_scene *scn)
+void	ft_reload(t_scene *scn)
 {
 	mlx_clear_window(scn->mlx, scn->win);
 	scn->center = ft_get_center(*scn);
-	ft_draw_map_matrix(*scn);
+	ft_draw_map(*scn);
 }
 
-void	ft_draw_map_matrix(t_scene scn)
+void	ft_draw_map(t_scene scn)
 {
 	int			x;
 	int			y;

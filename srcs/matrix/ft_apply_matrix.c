@@ -17,18 +17,27 @@ t_vector	ft_apply_matrix(double m[4][4], t_vector *v, t_vector center)
 
 void		ft_apply_all_vector(double matrix[4][4], t_scene scn)
 {
-	int 	x;
-	int 	y;
+	int 		x;
+	int 		y;
+	t_vector	tmp;
+	t_vector	tmp2;
+
+	mlx_clear_window(scn.mlx, scn.win);
 
 	y = 0;
 	while (y < scn.map.y_max)
 	{
 		x = 0;
-		while (x < scn.map.line[y].x_max)
+		while (x < scn.map.line[y].x_max - 1)
 		{
-			scn.map.line[y].px[x] = ft_apply_matrix(matrix, &scn.map.line[y].px[x], scn.center);
+			tmp = ft_apply_matrix(matrix, &scn.map.line[y].px[x], scn.center);
+			tmp2 = ft_apply_matrix(matrix, &scn.map.line[y].px[x + 1], scn.center);
+			ft_print_vector(tmp);
+			ft_print_vector(tmp2);
+			ft_draw_line(scn, tmp, tmp2);
 			x++;
 		}
 		y++;
 	}
+
 }

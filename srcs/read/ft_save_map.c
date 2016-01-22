@@ -29,7 +29,7 @@ static void		ft_list_push_back(t_line **begin_list, char *str, int size)
 		*begin_list = ft_create_elem(str, size);
 }
 
-static t_map	ft_save_map(t_line *lst, int nb_line, int h)
+static t_map	ft_save_map(t_line *lst, int nb_line)
 {
 	t_map 		map;
 	t_width		*line;
@@ -41,7 +41,7 @@ static t_map	ft_save_map(t_line *lst, int nb_line, int h)
 	i = 0;
 	while (l)
 	{
-		line[i] = ft_split_to_int(l->str, ' ', i, h);
+		line[i] = ft_split_to_int(l->str, ' ', i);
 		l = l->next;
 		i++;
 	}
@@ -50,7 +50,7 @@ static t_map	ft_save_map(t_line *lst, int nb_line, int h)
 	return (map);
 }
 
-t_map			ft_read_file(char *name, int h)
+t_map			ft_read_file(char *name)
 {
 	char	*line;
 	t_map	map;
@@ -68,7 +68,7 @@ t_map			ft_read_file(char *name, int h)
 		ft_strdel(&line);
 		i++;
 	}
-	map = ft_save_map(lst, i, h);
+	map = ft_save_map(lst, i);
 	ft_clear_list(lst);
 	return (map);
 }

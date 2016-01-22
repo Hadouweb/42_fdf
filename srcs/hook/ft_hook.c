@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int		ft_translate_hmatrix(int keycode, t_scene *scn)
+int		ft_hook_translate(int keycode, t_scene *scn)
 {
 	if (keycode == 123)
 	{
@@ -25,7 +25,7 @@ int		ft_translate_hmatrix(int keycode, t_scene *scn)
 	return (1);
 }
 
-int		ft_rotate_hmatrix(int keycode, t_scene *scn)
+int		ft_hook_rotate(int keycode, t_scene *scn)
 {
 	if (keycode == KEY_ROTZ_LEFT)
 		ft_rotation(*scn, -(5 * M_PI / 180), 'z');
@@ -42,23 +42,59 @@ int		ft_rotate_hmatrix(int keycode, t_scene *scn)
 	return (1);
 }
 
-int 	ft_scale_hmatrix(int keycode, t_scene *scn)
+int 	ft_hook_scale(int keycode, t_scene *scn)
 {
+	t_vector v;
+
+	v.w = 1;
 	if (keycode == SCALE_UP)
-		ft_scale(*scn, 2);
+	{
+		v.x = 2;
+		v.y = 2;
+		v.z = 2;
+		ft_scale(*scn, v);
+	}
 	if (keycode == SCALE_DOWN)
-		ft_scale(*scn, 0.5);
+	{
+		v.x = 0.5;
+		v.y = 0.5;
+		v.z = 0.5;
+		ft_scale(*scn, v);
+	}
+	return (1);
+}
+
+int 	ft_hook_elev(int keycode, t_scene *scn)
+{
+	t_vector v;
+
+	v.w = 1;
+	if (keycode == ELEV_UP)
+	{
+		v.x = 1;
+		v.y = 1;
+		v.z = 2;
+		ft_scale(*scn, v);
+	}
+	if (keycode == ELEV_DOWN)
+	{
+		v.x = 1;
+		v.y = 1;
+		v.z = 0.5;
+		ft_scale(*scn, v);
+	}
 	return (1);
 }
 
 int		ft_hook(int keycode, t_scene *scn)
 {
-	printf("%d\n", keycode);
+	//printf("%d\n", keycode);
 	if (keycode == KEY_ESC)
 		exit(1);
-	ft_translate_hmatrix(keycode, scn);
-	ft_rotate_hmatrix(keycode, scn);
-	ft_scale_hmatrix(keycode, scn);
-	ft_reload_matrix(scn);
+	ft_hook_translate(keycode, scn);
+	ft_hook_rotate(keycode, scn);
+	ft_hook_scale(keycode, scn);
+	ft_hook_elev(keycode, scn);
+	//ft_reload(scn);
 	return (1);
 }
