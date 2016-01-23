@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void	ft_apply_all_matrix(t_scene scn)
+void	ft_apply_all_matrix(t_scene *scn)
 {
 	t_matrix	a;
 	t_matrix	b;
@@ -8,22 +8,22 @@ void	ft_apply_all_matrix(t_scene scn)
 
 	m = ft_init_matrix();
 
-	a = ft_scale_matrix(scn.scale);
-	b = ft_rotation_matrix_z(scn.rot);
+	a = ft_scale_matrix(scn->scale);
+	b = ft_rotation_matrix_z(scn->rot);
 	m = ft_muli_matrix(b, a);
 
-	b = ft_rotation_matrix_x(scn.rot);
+	b = ft_rotation_matrix_x(scn->rot);
 	m = ft_muli_matrix(b, m);
 
-	b = ft_rotation_matrix_y(scn.rot);
+	b = ft_rotation_matrix_y(scn->rot);
 	m = ft_muli_matrix(b, m);
 
-	b = ft_rotation_matrix_y(scn.rot);
+	b = ft_rotation_matrix_y(scn->rot);
 	m = ft_muli_matrix(b, m);
 
-	b = ft_translation_matrix(scn.trans);
+	b = ft_translation_matrix(scn->trans);
 	m = ft_muli_matrix(b, m);
-
+	printf("%p\n", scn->data);
 	ft_apply_all_vector(m, scn);
 }
 

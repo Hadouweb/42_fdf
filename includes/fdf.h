@@ -98,6 +98,11 @@ typedef struct  	s_scene
 	t_vector		center;
 	int 			projection;
 	char 			*name;
+	char 			*data;
+	void 			*img;
+	int 			bpp;
+	int 			sizeline;
+	int 			endian;
 }					t_scene;
 
 void				ft_init(t_map map, char *name);
@@ -114,7 +119,7 @@ void				ft_print_matrix(double m[4][4]);
 void				ft_print_vector(t_vector v);
 void				ft_clear_list(t_line *lst);
 
-void 				ft_draw_line(t_scene scn, t_vector a, t_vector b);
+void 				ft_draw_line(t_scene *scn, t_vector a, t_vector b);
 
 t_matrix			ft_scale_matrix(t_vector v);
 t_matrix			ft_translation_matrix(t_vector v);
@@ -125,13 +130,13 @@ t_matrix			ft_rotation_matrix_z(t_vector v);
 t_matrix			ft_init_matrix(void);
 t_matrix			ft_identity_matrix(void);
 
-void				ft_apply_all_vector(t_matrix m, t_scene scn);
+void				ft_apply_all_vector(t_matrix m, t_scene *scn);
 t_vector			ft_apply_matrix(double m[4][4], t_vector v, t_vector center);
 t_vector			ft_vector_multi(t_vector a, t_vector b);
 t_vector			ft_vector_multi_elev(t_vector a, t_vector b);
 t_vector			ft_vector_sum(t_vector a, t_vector b);
 
-void				ft_apply_all_matrix(t_scene scn);
+void				ft_apply_all_matrix(t_scene *scn);
 t_matrix			ft_muli_matrix(t_matrix a, t_matrix b);
 
 int					ft_hook_translate(int keycode, t_scene *scn);
