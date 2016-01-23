@@ -11,7 +11,7 @@ t_vector	ft_vector_sum(t_vector a, t_vector b)
 	return (a);
 }
 
-void	muli_mat4x4(double a[4][4], double b[4][4])
+void	muli_mat4x4(double a[4][4], double b[4][4], double m[4][4])
 {
 	int i;
 	int j;
@@ -26,7 +26,7 @@ void	muli_mat4x4(double a[4][4], double b[4][4])
 		{
 			while (p < 4)
 			{
-				a[j][p] *= b[p][i];
+				m[j][i] += a[j][p] * b[p][i];
 				p++;
 			}
 			p = 0;
@@ -39,33 +39,30 @@ void	muli_mat4x4(double a[4][4], double b[4][4])
 
 void	ft_apply_all_matrix(t_scene scn)
 {
-	double	matrix[4][4];
-	double	matrix2[4][4];
+	double	a[4][4];
+	double	b[4][4];
+	double	m[4][4];
 
-	ft_identity_matrix(matrix);
-	ft_scale_matrix(matrix, scn.scale);
-	ft_print_matrix(matrix);
+	ft_identity_matrix(a);
+	ft_scale_matrix(a, scn.scale);
 
-	ft_identity_matrix(matrix2);
-	ft_rotation_matrix_z(scn.rot.z, matrix2);
-	ft_print_matrix(matrix2);
+	ft_identity_matrix(b);
+	ft_rotation_matrix_z(scn.rot.z, b);
 
-	muli_mat4x4(matrix, matrix2);
-	ft_print_matrix(matrix);
+	ft_init_matrix(m);
+	muli_mat4x4(a, b, m);
 
-	ft_apply_all_vector(matrix, scn);
+	ft_print_matrix(m);
 
 	/*ft_identity_matrix(matrix);
 	ft_rotation_matrix_x(scn.rot.x, matrix);
-	ft_apply_all_vector(matrix, scn);
 
 	ft_identity_matrix(matrix);
 	ft_rotation_matrix_y(scn.rot.y, matrix);
-	ft_apply_all_vector(matrix, scn);
 
 	ft_identity_matrix(matrix);
-	ft_translation_matrix(matrix, scn.trans);
-	ft_apply_all_vector(matrix, scn);*/
+	ft_translation_matrix(matrix, scn.trans);*/
+	ft_apply_all_vector(m, scn);
 }
 
 void 	ft_translation(t_scene scn, t_vector v)

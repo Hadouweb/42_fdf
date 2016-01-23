@@ -142,5 +142,6 @@ void 				ft_translation(t_scene scn, t_vector v);
 void				ft_rotation(t_scene scn, t_vector rot);
 void				ft_scale(t_scene scn, t_vector v);
 void				ft_up_z(t_scene scn, int h);
+void				ft_init_matrix(double matrix[4][4]);
 
 # endif

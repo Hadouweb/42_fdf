@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static void	ft_init_matrix(double matrix[4][4])
+void	ft_init_matrix(double matrix[4][4])
 {
 	int 	i;
 	int 	j;
