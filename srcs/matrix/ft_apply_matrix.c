@@ -23,7 +23,6 @@ void	ft_apply_all_matrix(t_scene *scn)
 
 	b = ft_translation_matrix(scn->trans);
 	m = ft_muli_matrix(b, m);
-	printf("%p\n", scn->data);
 	ft_apply_all_vector(m, scn);
 }
 

@@ -15,7 +15,6 @@ void	ft_rotation(t_scene *scn)
 void	ft_scale(t_scene *scn)
 {
 	scn->scale = ft_vector_multi(scn->scale, scn->v);
-	printf("%p\n", scn->data);
 	ft_apply_all_matrix(scn);
 }
 

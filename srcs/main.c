@@ -14,7 +14,7 @@
 
 static void		ft_init_vector(t_scene *scn)
 {
-	scn->scale = ft_get_vector(2.0, 2.0, 2.0, 1.0);
+	scn->scale = ft_get_vector(20.0, 20.0, 10.0, 1.0);
 	scn->rot = ft_get_vector(0.0, 0.0, 0.0, 1.0);
 	scn->trans = ft_get_vector(1.0, 1.0, 1.0, 1.0);
 }
@@ -33,10 +33,8 @@ void			ft_init(t_map map, char *name)
 	scn.name = ft_strdup(name);
 	scn.img = mlx_new_image(scn.mlx, SIZE_W, SIZE_H);
 	scn.data = mlx_get_data_addr(scn.img, &scn.bpp, &scn.sizeline, &scn.endian);
-	printf("%p\n", scn.data);
 	ft_bzero(scn.data, SIZE_W * SIZE_H * 4);
 	ft_init_vector(&scn);
-	printf("%p\n", scn.data);
 
 	ft_scale(&scn);
 	mlx_hook(scn.win, 2, 3, ft_hook, &scn);

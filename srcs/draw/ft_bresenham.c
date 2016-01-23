@@ -2,7 +2,7 @@
 
 void	ft_generate_image(t_scene *scn, int x, int y, int color)
 {
-	if (y < 0 || y > SIZE_H || x < 0 || x > SIZE_W - 1)
+	if (y < 0 || y > SIZE_H - 1 || x < 0 || x > SIZE_W - 1)
 		return ;
 	int r;
 	int g;
@@ -21,7 +21,7 @@ void 	ft_draw_line(t_scene *scn, t_vector a, t_vector b)
 {
 	int dx, dy, i, e;
   	int incx, incy, inc1, inc2;
-  	int x, y;
+  	double x, y;
 
 	dx = b.x - a.x;
 	dy = b.y - a.y;
