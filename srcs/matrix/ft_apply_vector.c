@@ -60,18 +60,12 @@ t_vector	ft_vector_multi(t_vector a, t_vector b)
 	return (a);
 }
 
-t_vector	ft_vector_multi_elev(t_vector a, t_vector b)
+t_vector	ft_vector_sum_elev(t_vector a, t_vector b)
 {
-	if (a.z < 0)
-		b.z = 1 / b.z;
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 	a.w += b.w;
-	if (a.z < 1 && a.z > 0)
-		a.z = -a.z;
-	else if (a.z > -1 && a.z < 0)
-		a.z = -a.z;
 	return (a);
 }
 

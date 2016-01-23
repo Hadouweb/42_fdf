@@ -133,7 +133,7 @@ t_matrix			ft_identity_matrix(void);
 void				ft_apply_all_vector(t_matrix m, t_scene *scn);
 t_vector			ft_apply_matrix(double m[4][4], t_vector v, t_vector center);
 t_vector			ft_vector_multi(t_vector a, t_vector b);
-t_vector			ft_vector_multi_elev(t_vector a, t_vector b);
+t_vector			ft_vector_sum_elev(t_vector a, t_vector b);
 t_vector			ft_vector_sum(t_vector a, t_vector b);
 
 void				ft_apply_all_matrix(t_scene *scn);

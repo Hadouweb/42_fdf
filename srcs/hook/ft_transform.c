@@ -21,6 +21,6 @@ void	ft_scale(t_scene *scn)
 
 void	ft_scale_elev(t_scene *scn)
 {
-	scn->scale = ft_vector_multi_elev(scn->scale, scn->v);
+	scn->scale = ft_vector_sum_elev(scn->scale, scn->v);
 	ft_apply_all_matrix(scn);
 }
