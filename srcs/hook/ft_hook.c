@@ -2,100 +2,81 @@
 
 int		ft_hook_translate(int keycode, t_scene *scn)
 {
-	if (keycode == 123)
-	{
+	int		key;
+
+	key = 0;
+	if (keycode == 123 && ++key)
 		scn->v = ft_get_vector(-10.0, 0.0, 0.0, 1.0);
-		ft_translation(*scn, scn->v);
-	}
-	else if (keycode == 124)
-	{
+	else if (keycode == 124 && ++key)
 		scn->v = ft_get_vector(10.0, 0.0, 0.0, 1.0);
-		ft_translation(*scn, scn->v);
-	}
-	else if (keycode == 125)
-	{
+	else if (keycode == 125 && ++key)
 		scn->v = ft_get_vector(0.0, 10.0, 0.0, 1.0);
-		ft_translation(*scn, scn->v);
-	}
-	else if (keycode == 126)
-	{
+	else if (keycode == 126 && ++key)
 		scn->v = ft_get_vector(0.0, -10.0, 0.0, 1.0);
-		ft_translation(*scn, scn->v);
-	}
+	if (key)
+		ft_translation(scn);
 	return (1);
 }
 
 int		ft_hook_rotate(int keycode, t_scene *scn)
 {
-	if (keycode == KEY_ROTZ_LEFT)
+	int		key;
+
+	key = 0;
+	if (keycode == KEY_ROTZ_LEFT && ++key)
 		scn->v = ft_get_vector(0.0, 0.0, -(5 * M_PI / 180), 1.0);
-	if (keycode == KEY_ROTZ_RIGHT)
+	if (keycode == KEY_ROTZ_RIGHT && ++key)
 		scn->v = ft_get_vector(0.0, 0.0, 5 * M_PI / 180, 1.0);
-	if (keycode == KEY_ROTX_TOP)
+	if (keycode == KEY_ROTX_TOP && ++key)
 		scn->v = ft_get_vector(-(5 * M_PI / 180), 0.0, 0.0, 1.0);
-	if (keycode == KEY_ROTX_BOT)
+	if (keycode == KEY_ROTX_BOT && ++key)
 		scn->v = ft_get_vector(5 * M_PI / 180, 0.0, 0.0, 1.0);
-	if (keycode == KEY_ROTY_LEFT)
+	if (keycode == KEY_ROTY_LEFT && ++key)
 		scn->v = ft_get_vector(0.0, -(5 * M_PI / 180), 0.0, 1.0);
-	if (keycode == KEY_ROTY_RIGHT)
+	if (keycode == KEY_ROTY_RIGHT && ++key)
 		scn->v = ft_get_vector(0.0, 5 * M_PI / 180, 0.0, 1.0);
-	ft_rotation(*scn, scn->v);
+	if (key)
+		ft_rotation(scn);
 	return (1);
 }
 
 int 	ft_hook_scale(int keycode, t_scene *scn)
 {
-	t_vector v;
+	int		key;
 
-	v.w = 1;
-	if (keycode == SCALE_UP)
-	{
-		v.x = 2;
-		v.y = 2;
-		v.z = 2;
-		ft_scale(*scn, v);
-	}
-	if (keycode == SCALE_DOWN)
-	{
-		v.x = 0.5;
-		v.y = 0.5;
-		v.z = 0.5;
-		ft_scale(*scn, v);
-	}
+	key = 0;
+	if (keycode == SCALE_UP && ++key)
+		scn->v = ft_get_vector(2.0, 2.0, 2.0, 1.0);
+	if (keycode == SCALE_DOWN && ++key)
+		scn->v = ft_get_vector(0.5, 0.5, 0.5, 1.0);
+	if (key)
+		ft_scale(scn);
 	return (1);
 }
 
 int 	ft_hook_elev(int keycode, t_scene *scn)
 {
-	t_vector v;
+	int		key;
 
-	v.w = 1;
-	if (keycode == ELEV_UP)
-	{
-		v.x = 1;
-		v.y = 1;
-		v.z = 2;
-		ft_scale(*scn, v);
-	}
-	if (keycode == ELEV_DOWN)
-	{
-		v.x = 1;
-		v.y = 1;
-		v.z = 0.5;
-		ft_scale(*scn, v);
-	}
+	key = 0;
+	if (keycode == ELEV_UP && ++key)
+		scn->v = ft_get_vector(1, 1, 2, 1.0);
+	if (keycode == ELEV_DOWN && ++key)
+		scn->v = ft_get_vector(1, 1, 0.5, 1.0);
+	if (key)
+		ft_scale(scn);
 	return (1);
 }
 
 int		ft_hook(int keycode, t_scene *scn)
 {
 	//printf("%d\n", keycode);
+		mlx_clear_window(scn->mlx, scn->win);
 	if (keycode == KEY_ESC)
 		exit(1);
 	ft_hook_translate(keycode, scn);
 	ft_hook_rotate(keycode, scn);
 	ft_hook_scale(keycode, scn);
 	ft_hook_elev(keycode, scn);
-	//ft_reload(scn);
 	return (1);
 }

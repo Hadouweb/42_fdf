@@ -20,7 +20,6 @@ SRC = 	$(SRCPATH)/main.c\
 		$(READPATH)/ft_save_map.c\
 		$(READPATH)/ft_split_to_int.c\
 		$(DRAWPATH)/ft_bresenham.c\
-		$(DRAWPATH)/ft_draw.c\
 		$(HOOKPATH)/ft_hook.c\
 		$(HOOKPATH)/ft_transform.c\
 		$(UTILPATH)/ft_debug.c\

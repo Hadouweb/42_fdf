@@ -33,8 +33,7 @@ void	ft_init(t_map map, char *name)
 	scn.name = ft_strdup(name);
 	ft_init_vector(&scn);
 
-	ft_scale(scn, scn.v);
-	//ft_reload(&scn);
+	ft_scale(&scn);
 
 	mlx_hook(scn.win, 2, 3, ft_hook, &scn);
 

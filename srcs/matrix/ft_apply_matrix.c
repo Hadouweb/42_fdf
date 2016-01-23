@@ -15,14 +15,12 @@ t_vector	ft_apply_matrix(double m[4][4], t_vector v, t_vector center)
 	return (tmp);
 }
 
-void		ft_apply_all_vector(double matrix[4][4], t_scene scn)
+void		ft_apply_all_vector(t_matrix m, t_scene scn)
 {
 	int 		x;
 	int 		y;
 	t_vector	tmp;
 	t_vector	tmp2;
-
-	//mlx_clear_window(scn.mlx, scn.win);
 
 	y = 0;
 	while (y < scn.map.y_max)
@@ -30,8 +28,8 @@ void		ft_apply_all_vector(double matrix[4][4], t_scene scn)
 		x = 0;
 		while (x < scn.map.line[y].x_max - 1)
 		{
-			tmp = ft_apply_matrix(matrix, scn.map.line[y].px[x], scn.center);
-			tmp2 = ft_apply_matrix(matrix, scn.map.line[y].px[x + 1], scn.center);
+			tmp = ft_apply_matrix(m.n, scn.map.line[y].px[x], scn.center);
+			tmp2 = ft_apply_matrix(m.n, scn.map.line[y].px[x + 1], scn.center);
 			ft_draw_line(scn, tmp, tmp2);
 			x++;
 		}
@@ -43,12 +41,51 @@ void		ft_apply_all_vector(double matrix[4][4], t_scene scn)
 		y = 0;
 		while (y < scn.map.y_max - 1)
 		{
-			tmp = ft_apply_matrix(matrix, scn.map.line[y].px[x], scn.center);
-			tmp2 = ft_apply_matrix(matrix, scn.map.line[y + 1].px[x], scn.center);
+			tmp = ft_apply_matrix(m.n, scn.map.line[y].px[x], scn.center);
+			tmp2 = ft_apply_matrix(m.n, scn.map.line[y + 1].px[x], scn.center);
 			ft_draw_line(scn, tmp, tmp2);
 			y++;
 		}
 		x++;
 	}
 
+}
+
+t_vector	ft_vector_sum(t_vector a, t_vector b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	a.z += b.z;
+	a.w += b.w;
+
+	return (a);
+}
+
+t_matrix	ft_muli_matrix(t_matrix a, t_matrix b)
+{
+	int 		i;
+	int 		j;
+	int 		p;
+	t_matrix 	m;
+
+	i = 0;
+	j = 0;
+	p = 0;
+	m = ft_init_matrix();
+	while (j < 4)
+	{
+		while (i < 4)
+		{
+			while (p < 4)
+			{
+				m.n[j][i] += a.n[j][p] * b.n[p][i];
+				p++;
+			}
+			p = 0;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	return (m);
 }
