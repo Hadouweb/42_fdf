@@ -1,75 +1,67 @@
 #include "fdf.h"
 
-static void		ft_draw_dx(t_scene scn, t_vector a, t_vector b, int e)
+void 	ft_draw_line(t_scene scn, t_vector a, t_vector b)
 {
-	int		i;
-	int		dx;
-	int		dy;
-	int		x;
-	int		y;
+	int dx, dy, i, e;
+  	int incx, incy, inc1, inc2;
+  	int x, y;
 
-	i = 0;
-	dx = fabs(b.x - a.x);
-	dy = fabs(b.y - a.y);
-	mlx_pixel_put(scn.mlx, scn.win, a.x, a.y, 0x0000FF00);
+	dx = b.x - a.x;
+	dy = b.y - a.y;
+	incx = 1;
+	incy = 1;
+
+	if(dx < 0) 
+		dx = -dx;
+	if(dy < 0) 
+		dy = -dy;
+	if(b.x < a.x) 
+		incx = -1;
+	if(b.y < a.y) 
+		incy = -1;
 	x = a.x;
-	y = a.y - 1;
-	while (i < dx)
-	{
-		if(e > 0)
-		{
-			y += (b.y < a.y) ? -1 : 1;
-			e += 2 * (dy - dx);
-		}
-		else 
-			e += 2 * dy;
-		x += (b.x < a.x) ? -1 : 1;
-		mlx_pixel_put(scn.mlx, scn.win, x, y, 0x0000FF00);
-		i++;
-  	}
-}
-
-static void		ft_draw_dy(t_scene scn, t_vector a, t_vector b, int e)
-{
-	int		i;
-	int		dx;
-	int		dy;
-	int		x;
-	int		y;
-
-	i = 0;
-	dx = fabs(b.x - a.x);
-	dy = fabs(b.y - a.y);
-	mlx_pixel_put(scn.mlx, scn.win, a.x, a.y, 0x0000FF00);
-	x = a.x - 1;
 	y = a.y;
-	while (i < dy)
-	{
-		if(e > 0)
-		{
-			x += (b.x < a.x) ? -1 : 1;
-			e += 2 * (dx - dy);
-		}
-		else 
-			e += 2 * dx;
-		y += (b.y < a.y) ? -1 : 1;
-		mlx_pixel_put(scn.mlx, scn.win, x, y, 0x0000FF00);
-		i++;
-	}
-}
 
-void 			ft_draw_line(t_scene scn, t_vector a, t_vector b)
-{
-	int 	dx;
-	int 	dy;
-	int 	e;
 
-	dx = abs((int)b.x - (int)a.x);
-	dy = abs((int)b.y - (int)a.y);
-	e = 2 * abs(dy - dx);
 
 	if(dx > dy)
-		ft_draw_dx(scn, a, b, e);
+	{
+		mlx_pixel_put(scn.mlx, scn.win, x, y, 0X000000FF);
+		e = 2 * dy - dx;
+		inc1 = 2 * (dy - dx);
+		inc2 = 2 * dy;
+		for(i = 0; i < dx; i++)
+		{
+			if(e >= 0)
+			{
+				y += incy;
+						//printf("y %d\n", y);
+				e += inc1;
+			}
+			else 
+				e += inc2;
+			x += incx;
+			mlx_pixel_put(scn.mlx, scn.win, x, y, 0X000000FF);
+	  	}
+	}
 	else
-		ft_draw_dy(scn, a, b, e);
+	{
+		mlx_pixel_put(scn.mlx, scn.win, x, y, 0X000000FF);
+		e = 2 * dx - dy;
+		inc1 = 2 * (dx - dy);
+		inc2 = 2 * dx;
+		for(i = 0; i < dy; i++)
+		{
+			if(e >= 0)
+			{
+				x += incx;
+				e += inc1;
+			}
+			else 
+				e += inc2;
+			y += incy;
+								//	printf("2y %d\n", y);
+			mlx_pixel_put(scn.mlx, scn.win, x, y, 0X000000FF);
+		}
+	}
 }

@@ -28,6 +28,7 @@ SRC = 	$(SRCPATH)/main.c\
 		$(MATRIXPATH)/ft_apply_matrix.c\
 		$(MATRIXPATH)/ft_matrix.c\
 		$(MATRIXPATH)/ft_init_matrix.c\
+		$(MATRIXPATH)/ft_apply_vector.c\
 
 OBJ = $(SRC:.c=.o)
 

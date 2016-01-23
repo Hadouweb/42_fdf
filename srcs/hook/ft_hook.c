@@ -60,11 +60,11 @@ int 	ft_hook_elev(int keycode, t_scene *scn)
 
 	key = 0;
 	if (keycode == ELEV_UP && ++key)
-		scn->v = ft_get_vector(1, 1, 2, 1.0);
+		scn->v = ft_get_vector(0.0, 0.0, 1.0, 1.0);
 	if (keycode == ELEV_DOWN && ++key)
-		scn->v = ft_get_vector(1, 1, 0.5, 1.0);
+		scn->v = ft_get_vector(0.0, 0.0, -1.0, 1.0);
 	if (key)
-		ft_scale(scn);
+		ft_scale_elev(scn);
 	return (1);
 }
 
