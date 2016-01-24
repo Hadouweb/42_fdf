@@ -71,8 +71,8 @@ int 	ft_hook_elev(int keycode, t_scene *scn)
 int		ft_hook(int keycode, t_scene *scn)
 {
 	//printf("%d\n", keycode);
-	//mlx_destroy_image(scn->mlx, scn->img);
-		ft_bzero(scn->data, SIZE_W * SIZE_H * 4);
+	scn->display_menu = 0;
+	ft_bzero(scn->data, SIZE_W * SIZE_H * 4);
 	if (keycode == KEY_ESC)
 		exit(1);
 	ft_hook_translate(keycode, scn);

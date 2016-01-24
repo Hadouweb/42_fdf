@@ -90,9 +90,11 @@ void			ft_init(t_map map, char *name)
 	ft_bzero(scn.data, SIZE_W * SIZE_H * 4);
 	ft_init_vector(&scn);
 	ft_init_color(&scn);
+	scn.display_menu = 0;
 
 	ft_scale(&scn);
 	mlx_hook(scn.win, 2, 3, ft_hook, &scn);
+	mlx_key_hook(scn.win, ft_menu, &scn);
 
 	mlx_loop(scn.mlx);
 }
