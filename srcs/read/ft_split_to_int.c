@@ -48,7 +48,7 @@ static int	ft_strlen_split(char *s, char c)
 	return (i);
 }
 
-t_width		ft_split_to_int(char *s, char c, int l)
+t_width		ft_split_to_int(char *s, char c, int l, t_map *map)
 {
 	t_width		line;
 	size_t		nb_word;
@@ -69,6 +69,10 @@ t_width		ft_split_to_int(char *s, char c, int l)
 		line.px[i].y = l + SIZE_H / 2;
 		line.px[i].z = ft_atoi(&s[k]);
 		line.px[i].w = 1;
+		if (line.px[i].z > map->max)
+			map->max = line.px[i].z;
+		if (line.px[i].z < map->min)
+			map->min = line.px[i].z;
 		k += size;
 		i++;
 	}

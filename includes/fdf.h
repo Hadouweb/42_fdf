@@ -65,12 +65,21 @@ typedef struct  	s_matrix
 	double			n[4][4];
 }					t_matrix;
 
+typedef struct 		s_color
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned char	a;
+}					t_color;
+
 typedef	struct 		s_vector
 {
 	double			x;
 	double			y;
 	double			z;
 	double			w;
+	t_color 		color;
 }					t_vector;
 
 typedef struct 		s_width
@@ -83,6 +92,8 @@ typedef struct 		s_map
 {
 	t_width 		*line;
 	int 			y_max;
+	int 			max;
+	int 			min;
 }					t_map;
 
 typedef struct  	s_scene
@@ -109,7 +120,7 @@ void				ft_init(t_map map, char *name);
 
 t_map				ft_read_file(char *name);
 int					get_next_line(int const fd, char **line);
-t_width				ft_split_to_int(char *s, char c, int l);
+t_width				ft_split_to_int(char *s, char c, int l, t_map *map);
 
 t_vector			ft_get_vector(double x, double y, double z, double w);
 t_vector    		ft_get_center(t_scene scn);
@@ -149,5 +160,7 @@ void 				ft_translation(t_scene *scn);
 void				ft_rotation(t_scene *scn);
 void				ft_scale(t_scene *scn);
 void				ft_scale_elev(t_scene *scn);
+t_color				ft_cal_color(t_color a, t_color b, double pos);
+t_color 			ft_get_color(unsigned char r, unsigned char g, unsigned char b);
 
 # endif

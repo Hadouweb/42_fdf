@@ -39,9 +39,11 @@ static t_map	ft_save_map(t_line *lst, int nb_line)
 	line = (t_width *)ft_memalloc(nb_line * sizeof(t_width) + 1);
 	l = lst;
 	i = 0;
+	map.max = 0;	
+	map.min = 0;
 	while (l)
 	{
-		line[i] = ft_split_to_int(l->str, ' ', i);
+		line[i] = ft_split_to_int(l->str, ' ', i, &map);
 		l = l->next;
 		i++;
 	}

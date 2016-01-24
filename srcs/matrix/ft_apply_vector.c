@@ -48,6 +48,7 @@ t_vector	ft_apply_matrix(double m[4][4], t_vector v, t_vector center)
 	tmp.w = m[3][0] * v.x + m[3][1] * v.y + m[3][2] * v.z + m[3][3] * v.w;
 	tmp.x += center.x;
 	tmp.y += center.y;
+	tmp.color = v.color;
 	return (tmp);
 }
 
