@@ -57,10 +57,14 @@ void			ft_init_color(t_scene *scn)
 		x = 0;
 		while (x < scn->map.line[y].x_max)
 		{
-			if (scn->map.line[y].px[x].z > 8)
+			if (scn->map.line[y].px[x].z > 80)
 				scn->map.line[y].px[x].color = ft_get_color(255, 255, 255); // white
-			else if (scn->map.line[y].px[x].z < 5)
+			else if (scn->map.line[y].px[x].z > 40)
+				scn->map.line[y].px[x].color = ft_get_color(100, 50, 0);
+			else if (scn->map.line[y].px[x].z < 0 && scn->map.line[y].px[x].z > -10)
 				scn->map.line[y].px[x].color = ft_get_color(0, 0, 255); // blue
+			else if (scn->map.line[y].px[x].z <= -10)
+				scn->map.line[y].px[x].color = ft_get_color(0, 0, 100);
 			else
 				scn->map.line[y].px[x].color = ft_get_color(0, 255, 0); // green
 			x++;

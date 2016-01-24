@@ -39,7 +39,7 @@ void 	ft_draw_line(t_scene *scn, t_vector a, t_vector b)
 			//printf("%f %f %d\n", a.z, b.z, dist);
 	if(dx > dy)
 	{
-		//ft_generate_image(scn, x, y, color_pos(a.color, b.color, 0));
+		ft_generate_image(scn, x, y, ft_cal_color(c1, c2, 0 / fabs(b.x - a.x)));
 		e = 2 * dy - dx;
 		inc1 = 2 * (dy - dx);
 		inc2 = 2 * dy;
@@ -58,7 +58,7 @@ void 	ft_draw_line(t_scene *scn, t_vector a, t_vector b)
 	}
 	else
 	{
-		//ft_generate_image(scn, x, y, color_pos(a.color, b.color, 0));
+		ft_generate_image(scn, x, y, ft_cal_color(c1, c2, 0 / fabs(b.y - a.y)));
 		e = 2 * dx - dy;
 		inc1 = 2 * (dx - dy);
 		inc2 = 2 * dx;
