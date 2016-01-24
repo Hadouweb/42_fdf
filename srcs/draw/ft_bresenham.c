@@ -1,5 +1,21 @@
 #include "fdf.h"
 
+void	ft_draw_all(t_scene *scn)
+{
+	ft_bzero(scn->data, SIZE_W * SIZE_H * 4);
+	ft_apply_all_matrix(scn);
+	if (scn->display_menu == 0)
+		mlx_clear_window(scn->mlx, scn->win);
+	else if (scn->display_menu == 1)
+	{
+		//mlx_clear_window(scn->mlx, scn->win);
+		ft_create_menu(scn);
+	}
+	mlx_put_image_to_window(scn->mlx, scn->win, scn->img, 0, 0);
+	if (scn->display_menu == 1)
+		ft_create_text(scn);
+}
+
 void	ft_generate_image(t_scene *scn, int x, int y, t_color color)
 {
 	if (y < 0 || y > SIZE_H - 1 || x < 0 || x > SIZE_W - 1)
@@ -7,6 +23,7 @@ void	ft_generate_image(t_scene *scn, int x, int y, t_color color)
 	scn->data[y * scn->sizeline + x * scn->bpp / 8] = color.b;
 	scn->data[y * scn->sizeline + x * scn->bpp / 8 + 1] = color.g;
 	scn->data[y * scn->sizeline + x * scn->bpp / 8 + 2] = color.r;
+	scn->data[y * scn->sizeline + x * scn->bpp / 8 + 3] = color.a;
 }
 
 void 	ft_draw_line(t_scene *scn, t_vector a, t_vector b)
@@ -33,8 +50,8 @@ void 	ft_draw_line(t_scene *scn, t_vector a, t_vector b)
 	y = a.y;
 
 
-		c1 = b.color;
-		c2 = a.color;
+	c1 = b.color;
+	c2 = a.color;
 	
 			//printf("%f %f %d\n", a.z, b.z, dist);
 	if(dx > dy)

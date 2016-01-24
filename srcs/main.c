@@ -34,14 +34,14 @@ t_color			ft_cal_color(t_color a, t_color b, double pos)
 	return (color);
 }
 
-t_color 		ft_get_color(unsigned char r, unsigned char g, unsigned char b)
+t_color 		ft_get_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
 	t_color		color;
 
 	color.r = r;
 	color.g = g;
 	color.b = b;
-	color.a = 0;
+	color.a = a;
 
 	return (color);
 }
@@ -58,15 +58,15 @@ void			ft_init_color(t_scene *scn)
 		while (x < scn->map.line[y].x_max)
 		{
 			if (scn->map.line[y].px[x].z > 80)
-				scn->map.line[y].px[x].color = ft_get_color(255, 255, 255); // white
+				scn->map.line[y].px[x].color = ft_get_color(255, 255, 255, 0); // white
 			else if (scn->map.line[y].px[x].z > 40)
-				scn->map.line[y].px[x].color = ft_get_color(100, 50, 0);
+				scn->map.line[y].px[x].color = ft_get_color(100, 50, 0, 0);
 			else if (scn->map.line[y].px[x].z < 0 && scn->map.line[y].px[x].z > -10)
-				scn->map.line[y].px[x].color = ft_get_color(0, 0, 255); // blue
+				scn->map.line[y].px[x].color = ft_get_color(0, 0, 255, 0); // blue
 			else if (scn->map.line[y].px[x].z <= -10)
-				scn->map.line[y].px[x].color = ft_get_color(0, 0, 100);
+				scn->map.line[y].px[x].color = ft_get_color(0, 0, 100, 0);
 			else
-				scn->map.line[y].px[x].color = ft_get_color(0, 255, 0); // green
+				scn->map.line[y].px[x].color = ft_get_color(0, 255, 0, 0); // green
 			x++;
 		}
 		y++;
@@ -91,8 +91,10 @@ void			ft_init(t_map map, char *name)
 	ft_init_vector(&scn);
 	ft_init_color(&scn);
 	scn.display_menu = 0;
+	scn.already_display = 0;
 
 	ft_scale(&scn);
+	ft_draw_all(&scn);
 	mlx_hook(scn.win, 2, 3, ft_hook, &scn);
 	mlx_key_hook(scn.win, ft_menu, &scn);
 

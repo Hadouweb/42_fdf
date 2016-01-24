@@ -70,14 +70,13 @@ int 	ft_hook_elev(int keycode, t_scene *scn)
 
 int		ft_hook(int keycode, t_scene *scn)
 {
-	//printf("%d\n", keycode);
-	scn->display_menu = 0;
-	ft_bzero(scn->data, SIZE_W * SIZE_H * 4);
+	printf("%d\n", keycode);
 	if (keycode == KEY_ESC)
 		exit(1);
 	ft_hook_translate(keycode, scn);
 	ft_hook_rotate(keycode, scn);
 	ft_hook_scale(keycode, scn);
 	ft_hook_elev(keycode, scn);
+	ft_draw_all(scn);
 	return (1);
 }

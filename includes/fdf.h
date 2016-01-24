@@ -40,13 +40,13 @@
 # define KEY_ISO 34
 # define KEY_PAR 35
 
-# define SCALE_UP 69
-# define SCALE_DOWN 78
+# define SCALE_UP 38
+# define SCALE_DOWN 40
 
-# define ELEV_UP 4
-# define ELEV_DOWN 5
+# define ELEV_UP 37
+# define ELEV_DOWN 41
 
-# define KEY_MENU 46
+# define KEY_MENU 5
 
 typedef struct		s_save
 {
@@ -117,6 +117,7 @@ typedef struct  	s_scene
 	int 			sizeline;
 	int 			endian;
 	int 			display_menu;
+	int 			already_display;
 }					t_scene;
 
 void				ft_init(t_map map, char *name);
@@ -164,9 +165,11 @@ void				ft_rotation(t_scene *scn);
 void				ft_scale(t_scene *scn);
 void				ft_scale_elev(t_scene *scn);
 t_color				ft_cal_color(t_color a, t_color b, double pos);
-t_color 			ft_get_color(unsigned char r, unsigned char g, unsigned char b);
+t_color 			ft_get_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int					ft_menu(int keycode, t_scene *scn);
 void				ft_generate_image(t_scene *scn, int x, int y, t_color color);
-void				ft_create_brackground(t_scene *scn);
+void				ft_create_menu(t_scene *scn);
+void				ft_draw_all(t_scene *scn);
+void				ft_create_text(t_scene *scn);
 
 # endif

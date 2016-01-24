@@ -33,7 +33,6 @@ void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(scn->mlx, scn->win, scn->img, 0, 0);
 }
 
 t_vector	ft_apply_matrix(double m[4][4], t_vector v, t_vector center)
