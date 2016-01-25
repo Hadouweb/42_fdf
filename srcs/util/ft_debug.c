@@ -47,3 +47,9 @@ void		ft_print_vector(t_vector v)
 	printf("{%f, %f, %f, %f}\n", v.x, v.y, v.z, v.w);
 	printf("\n");
 }
+
+void 		ft_exit(void)
+{
+	ft_putstr("Error\n");
+	exit(1);
+}

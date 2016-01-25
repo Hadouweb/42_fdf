@@ -60,6 +60,8 @@
 # define KEY_COLOR_8 28
 # define KEY_COLOR_9 25
 
+# define KEY_MAP_1 9
+# define KEY_MAP_2 8
 
 typedef struct		s_save
 {
@@ -139,14 +141,13 @@ typedef struct  	s_scene
 	t_vector		v;
 	t_vector		center;
 	int 			projection;
-	char 			*name;
 	t_img 			*obj;
 	t_img 			*menu;
 	int 			display_menu;
 	int 			already_display;
 }					t_scene;
 
-void				ft_init(t_map map, char *name);
+void				ft_init(t_map map);
 
 t_map				ft_read_file(char *name);
 int					get_next_line(int const fd, char **line);
@@ -199,5 +200,6 @@ void				ft_draw_all(t_scene *scn);
 void				ft_create_text(t_scene *scn);
 void				ft_init_color(t_scene *scn, t_colorset cs);
 t_colorset			ft_get_colorset(t_color top, t_color mid, t_color bot);
+void 				ft_exit(void);
 
 # endif

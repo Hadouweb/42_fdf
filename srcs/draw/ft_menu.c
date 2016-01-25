@@ -118,6 +118,24 @@ int 	ft_projection(int keycode, t_scene *scn)
 	return (1);
 }
 
+int 	ft_select_map(int keycode, t_scene *scn)
+{
+	t_map 	map;
+	int 	key;
+
+	key = 0;
+	if (keycode == KEY_MAP_1 && ++key)
+		map = ft_read_file("CUSTOM_France.OCEAN1.XXL.fdf");
+	if (keycode == KEY_MAP_2 && ++key)
+		map = ft_read_file("CUSTOM_Japan.OCEAN1.XXL.fdf");
+	if (key)
+	{
+		mlx_destroy_window(scn->mlx, scn->win);
+		ft_init(map);
+	}
+	return (1);
+}
+
 int		ft_menu(int keycode, t_scene *scn)
 {
 	printf("%d\n", keycode);
@@ -134,6 +152,7 @@ int		ft_menu(int keycode, t_scene *scn)
 	}
 	ft_color_hook(keycode, scn);
 	ft_projection(keycode, scn);
+	ft_select_map(keycode, scn);
 	ft_draw_all(scn);
 	return (1);
 }

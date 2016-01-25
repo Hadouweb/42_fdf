@@ -33,7 +33,7 @@ t_img			*ft_get_img_info(t_scene *scn, int width, int height)
 	return (obj);
 }
 
-void			ft_init(t_map map, char *name)
+void			ft_init(t_map map)
 {
 	t_scene	scn;
 
@@ -44,7 +44,6 @@ void			ft_init(t_map map, char *name)
 	scn.v = ft_get_vector(1.0, 1.0, 1.0, 1.0);
 	scn.center = ft_get_center(scn);
 	scn.projection = 1;
-	scn.name = ft_strdup(name);
 	scn.obj = ft_get_img_info(&scn, SIZE_W, SIZE_H);
 	scn.menu = ft_get_img_info(&scn, SIZE_W - 10, 200);
 	ft_init_vector(&scn);
@@ -69,6 +68,8 @@ int				main(int ac, char **av)
 
 	if (ac > 1)
 		map = ft_read_file(av[1]);
-	ft_init(map, av[1]);
+	if (map.y_max == 0)
+		ft_exit();
+	ft_init(map);
 	return (0);
 }
