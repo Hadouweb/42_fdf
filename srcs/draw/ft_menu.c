@@ -125,9 +125,15 @@ int 	ft_select_map(int keycode, t_scene *scn)
 
 	key = 0;
 	if (keycode == KEY_MAP_1 && ++key)
-		map = ft_read_file("CUSTOM_France.OCEAN1.XXL.fdf");
+		map = ft_read_file("maps/42.fdf");
 	if (keycode == KEY_MAP_2 && ++key)
-		map = ft_read_file("CUSTOM_Japan.OCEAN1.XXL.fdf");
+		map = ft_read_file("maps/pyramide.fdf");
+	if (keycode == KEY_MAP_3 && ++key)
+		map = ft_read_file("maps/mars.fdf");
+	if (keycode == KEY_MAP_4 && ++key)
+		map = ft_read_file("CUSTOM_Japan.OCEAN1.L.fdf");
+	if (keycode == KEY_MAP_5 && ++key)
+		map = ft_read_file("CUSTOM_France.OCEAN1.XXL.fdf");
 	if (key)
 	{
 		mlx_destroy_window(scn->mlx, scn->win);

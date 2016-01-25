@@ -60,8 +60,11 @@
 # define KEY_COLOR_8 28
 # define KEY_COLOR_9 25
 
-# define KEY_MAP_1 9
-# define KEY_MAP_2 8
+# define KEY_MAP_1 8
+# define KEY_MAP_2 9
+# define KEY_MAP_3 11
+# define KEY_MAP_4 45
+# define KEY_MAP_5 46
 
 typedef struct		s_save
 {
