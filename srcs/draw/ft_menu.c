@@ -101,8 +101,26 @@ int 	ft_color_hook(int keycode, t_scene *scn)
 	return (1);
 }
 
+int 	ft_projection(int keycode, t_scene *scn)
+{
+	if (keycode == KEY_ISO)
+	{
+		scn->projection = 1;
+		scn->rot = ft_get_vector(-1.1, 0.0, 0.80, 1.0);
+		ft_apply_all_matrix(scn);
+	}
+	else if (keycode == KEY_PAR)
+	{
+		scn->projection = 2;
+		scn->rot = ft_get_vector(-1.0, 0.0, 0.0, 1.0);
+		ft_apply_all_matrix(scn);
+	}
+	return (1);
+}
+
 int		ft_menu(int keycode, t_scene *scn)
 {
+	printf("%d\n", keycode);
 	if (keycode == KEY_MENU && scn->display_menu == 0)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)
@@ -115,6 +133,7 @@ int		ft_menu(int keycode, t_scene *scn)
 		ft_apply_all_matrix(scn);
 	}
 	ft_color_hook(keycode, scn);
+	ft_projection(keycode, scn);
 	ft_draw_all(scn);
 	return (1);
 }
