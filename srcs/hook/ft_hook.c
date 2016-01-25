@@ -70,7 +70,7 @@ int 	ft_hook_elev(int keycode, t_scene *scn)
 
 int		ft_hook(int keycode, t_scene *scn)
 {
-	printf("%d\n", keycode);
+	//printf("%d\n", keycode);
 	if (keycode == KEY_ESC)
 		exit(1);
 	ft_hook_translate(keycode, scn);

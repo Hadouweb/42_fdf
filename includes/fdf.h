@@ -40,13 +40,13 @@
 # define KEY_ISO 34
 # define KEY_PAR 35
 
-# define SCALE_UP 38
-# define SCALE_DOWN 40
+# define SCALE_UP 15
+# define SCALE_DOWN 17
 
-# define ELEV_UP 37
-# define ELEV_DOWN 41
+# define ELEV_UP 3
+# define ELEV_DOWN 5
 
-# define KEY_MENU 5
+# define KEY_MENU 6
 
 typedef struct		s_save
 {
@@ -98,6 +98,15 @@ typedef struct 		s_map
 	int 			min;
 }					t_map;
 
+typedef struct 		s_img
+{
+	void			*img;
+	int 			bpp;
+	int 			sizeline;
+	int 			endian;
+	char			*data;
+}					t_img;
+
 typedef struct  	s_scene
 {
 	void			*mlx;
@@ -111,11 +120,8 @@ typedef struct  	s_scene
 	t_vector		center;
 	int 			projection;
 	char 			*name;
-	char 			*data;
-	void 			*img;
-	int 			bpp;
-	int 			sizeline;
-	int 			endian;
+	t_img 			*obj;
+	t_img 			*menu;
 	int 			display_menu;
 	int 			already_display;
 }					t_scene;
@@ -134,7 +140,7 @@ void				ft_print_matrix(double m[4][4]);
 void				ft_print_vector(t_vector v);
 void				ft_clear_list(t_line *lst);
 
-void 				ft_draw_line(t_scene *scn, t_vector a, t_vector b);
+void 				ft_draw_line(t_img *obj, t_vector a, t_vector b);
 
 t_matrix			ft_scale_matrix(t_vector v);
 t_matrix			ft_translation_matrix(t_vector v);
@@ -167,9 +173,9 @@ void				ft_scale_elev(t_scene *scn);
 t_color				ft_cal_color(t_color a, t_color b, double pos);
 t_color 			ft_get_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int					ft_menu(int keycode, t_scene *scn);
-void				ft_generate_image(t_scene *scn, int x, int y, t_color color);
+void				ft_generate_image(t_img *obj, int x, int y, t_color color);
 void				ft_create_menu(t_scene *scn);
 void				ft_draw_all(t_scene *scn);
 void				ft_create_text(t_scene *scn);
-
+void				ft_init_color(t_scene *scn);
 # endif

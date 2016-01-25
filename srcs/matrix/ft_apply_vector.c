@@ -15,7 +15,7 @@ void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 		{
 			tmp = ft_apply_matrix(m.n, scn->map.line[y].px[x], scn->center);
 			tmp2 = ft_apply_matrix(m.n, scn->map.line[y].px[x + 1], scn->center);
-			ft_draw_line(scn, tmp, tmp2);
+			ft_draw_line(scn->obj, tmp, tmp2);
 			x++;
 		}
 		y++;
@@ -28,7 +28,7 @@ void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 		{
 			tmp = ft_apply_matrix(m.n, scn->map.line[y].px[x], scn->center);
 			tmp2 = ft_apply_matrix(m.n, scn->map.line[y + 1].px[x], scn->center);
-			ft_draw_line(scn, tmp, tmp2);
+			ft_draw_line(scn->obj, tmp, tmp2);
 			y++;
 		}
 		x++;
