@@ -14,7 +14,10 @@
 
 static void		ft_init_vector(t_scene *scn)
 {
-	scn->scale = ft_get_vector(3.0, 3.0, 0.3, 1.0);
+	double	v;
+
+	v = scn->map.y_max / scn->map.y_max * 10;
+	scn->scale = ft_get_vector(v, v, v / 10, 1.0);
 	scn->rot = ft_get_vector(0.0, 0.0, 0.0, 1.0);
 	scn->trans = ft_get_vector(1.0, 1.0, 1.0, 1.0);
 }

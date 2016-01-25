@@ -107,6 +107,13 @@ int		ft_menu(int keycode, t_scene *scn)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)
 		scn->display_menu = 0;
+	if (keycode == KEY_RESET)
+	{
+		scn->scale = ft_get_vector(3.0, 3.0, 0.3, 1.0);
+		scn->rot = ft_get_vector(0.0, 0.0, 0.0, 1.0);
+		scn->trans = ft_get_vector(1.0, 1.0, 1.0, 1.0);
+		ft_apply_all_matrix(scn);
+	}
 	ft_color_hook(keycode, scn);
 	ft_draw_all(scn);
 	return (1);

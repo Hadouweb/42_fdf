@@ -25,6 +25,8 @@
 
 # define KEY_ESC 53
 
+# define KEY_RESET 7
+
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
