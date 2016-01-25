@@ -45,7 +45,10 @@ void			ft_init(t_map map, char *name)
 	scn.obj = ft_get_img_info(&scn, SIZE_W, SIZE_H);
 	scn.menu = ft_get_img_info(&scn, SIZE_W - 10, 200);
 	ft_init_vector(&scn);
-	ft_init_color(&scn);
+	ft_init_color(&scn, ft_get_colorset(
+			ft_get_color(90, 30, 0, 0),
+			ft_get_color(0, 150, 0, 0), 
+			ft_get_color(0, 0, 200, 0)));
 	scn.display_menu = 0;
 	scn.already_display = 0;
 

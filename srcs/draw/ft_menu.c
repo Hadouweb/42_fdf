@@ -64,12 +64,50 @@ void	ft_create_menu(t_scene *scn)
 	}
 }
 
+t_colorset	ft_get_colorset(t_color top, t_color mid, t_color bot)
+{
+	t_colorset	colorset;
+
+	colorset.top = top;
+	colorset.mid = mid;
+	colorset.bot = bot;
+	return (colorset);
+}
+
+int 	ft_color_hook(int keycode, t_scene *scn)
+{
+	t_colorset 	colorset;
+	int 		key;
+
+	key = 0;
+	if (keycode == KEY_COLOR_1 && ++key)
+		colorset = ft_get_colorset(ft_get_color(90, 30, 0, 0),
+			ft_get_color(0, 150, 0, 0), 
+			ft_get_color(0, 0, 200, 0));
+	else if (keycode == KEY_COLOR_2 && ++key)
+		colorset = ft_get_colorset(ft_get_color(130, 30, 250, 0),
+			ft_get_color(130, 180, 50, 0), 
+			ft_get_color(130, 30, 250, 0));
+	else if (keycode == KEY_COLOR_3 && ++key)
+		colorset = ft_get_colorset(ft_get_color(200, 200, 200, 0),
+			ft_get_color(0, 0, 200, 0), 
+			ft_get_color(160, 80, 100, 0));
+	else if (keycode == KEY_COLOR_4 && ++key)
+		colorset = ft_get_colorset(ft_get_color(rand() % 255, rand() % 255, rand() % 255, 0),
+			ft_get_color(rand() % 255, rand() % 255, rand() % 255, 0), 
+			ft_get_color(rand() % 255, rand() % 255, rand() % 255, 0));
+	if (key)
+		ft_init_color(scn, colorset);
+	return (1);
+}
+
 int		ft_menu(int keycode, t_scene *scn)
 {
 	if (keycode == KEY_MENU && scn->display_menu == 0)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)
 		scn->display_menu = 0;
+	ft_color_hook(keycode, scn);
 	ft_draw_all(scn);
 	return (1);
 }

@@ -48,6 +48,17 @@
 
 # define KEY_MENU 6
 
+# define KEY_COLOR_1 18
+# define KEY_COLOR_2 19
+# define KEY_COLOR_3 20
+# define KEY_COLOR_4 21
+# define KEY_COLOR_5 23
+# define KEY_COLOR_6 22
+# define KEY_COLOR_7 26
+# define KEY_COLOR_8 28
+# define KEY_COLOR_9 25
+
+
 typedef struct		s_save
 {
 	int				fd_num;
@@ -106,6 +117,13 @@ typedef struct 		s_img
 	int 			endian;
 	char			*data;
 }					t_img;
+
+typedef	struct 		s_colorset
+{
+	t_color 		top;
+	t_color 		mid;
+	t_color 		bot;
+}					t_colorset;
 
 typedef struct  	s_scene
 {
@@ -177,5 +195,7 @@ void				ft_generate_image(t_img *obj, int x, int y, t_color color);
 void				ft_create_menu(t_scene *scn);
 void				ft_draw_all(t_scene *scn);
 void				ft_create_text(t_scene *scn);
-void				ft_init_color(t_scene *scn);
+void				ft_init_color(t_scene *scn, t_colorset cs);
+t_colorset			ft_get_colorset(t_color top, t_color mid, t_color bot);
+
 # endif
