@@ -1,12 +1,12 @@
 #include "fdf.h"
 
-void	ft_exit(void)
+void		ft_exit(void)
 {
 	ft_putstr("Error\n");
 	exit(1);
 }
 
-void	ft_clear_list(t_line *lst)
+void		ft_clear_list(t_line *lst)
 {
 	t_line	*l;
 	char	*tmp;
@@ -23,4 +23,30 @@ void	ft_clear_list(t_line *lst)
 	}
 	free(lst);
 	lst = NULL;
+}
+
+t_vector	**ft_cpy_map(t_map *map)
+{
+	t_vector	**cpy;
+	int			y;
+	int			x;
+
+	y = 0;
+	cpy = (t_vector **)ft_memalloc(sizeof(t_vector *) * map->y_max);
+	while (y < map->y_max)
+	{
+		x = 0;
+		cpy[y] = (t_vector *)ft_memalloc(sizeof(t_vector) * map->line[y].x_max);
+		while (x < map->line[y].x_max)
+		{
+			cpy[y][x] = ft_get_vector(
+				map->line[y].px[x].x,
+				map->line[y].px[x].y,
+				map->line[y].px[x].z,
+				map->line[y].px[x].w);
+			x++;
+		}
+		y++;
+	}
+	return (cpy);
 }

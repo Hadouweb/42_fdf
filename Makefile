@@ -4,7 +4,7 @@ SRCPATH = ./srcs
 DRAWPATH = $(SRCPATH)/draw
 READPATH = $(SRCPATH)/read
 UTILPATH = $(SRCPATH)/util
-HOOKPATH = $(SRCPATH)/hook
+EVENTATH = $(SRCPATH)/event
 MATRIXPATH = $(SRCPATH)/matrix
 INCPATH = ./includes
 
@@ -21,9 +21,11 @@ SRC = 	$(SRCPATH)/main.c\
 		$(READPATH)/ft_split_to_int.c\
 		$(DRAWPATH)/ft_bresenham.c\
 		$(DRAWPATH)/ft_menu.c\
+		$(DRAWPATH)/ft_draw.c\
 		$(DRAWPATH)/ft_color.c\
-		$(HOOKPATH)/ft_hook.c\
-		$(HOOKPATH)/ft_transform.c\
+		$(EVENTATH)/ft_event_repeat.c\
+		$(EVENTATH)/ft_event.c\
+		$(EVENTATH)/ft_transform.c\
 		$(UTILPATH)/ft_utils.c\
 		$(UTILPATH)/ft_vector.c\
 		$(MATRIXPATH)/ft_apply_matrix.c\

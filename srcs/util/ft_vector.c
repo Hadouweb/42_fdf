@@ -64,6 +64,5 @@ t_vector	ft_vector_sum(t_vector a, t_vector b)
 	a.y += b.y;
 	a.z += b.z;
 	a.w += b.w;
-
 	return (a);
 }

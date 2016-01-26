@@ -56,10 +56,11 @@ void			ft_init(t_map map)
 			ft_get_color(0, 0, 200, 0)));
 	scn.display_menu = 0;
 	scn.already_display = 0;
+	scn.cpy = ft_cpy_map(&scn.map);
 	ft_scale(&scn);
 	ft_draw_all(&scn);
-	mlx_hook(scn.win, 2, 3, ft_hook, &scn);
-	mlx_key_hook(scn.win, ft_menu, &scn);
+	mlx_hook(scn.win, 2, 3, ft_event_repeat, &scn);
+	mlx_key_hook(scn.win, ft_event, &scn);
 	mlx_loop(scn.mlx);
 }
 

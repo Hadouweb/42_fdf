@@ -27,7 +27,6 @@ void 	ft_draw_line(t_img *obj, t_vector a, t_vector b)
 	c1 = b.color;
 	c2 = a.color;
 	
-			//printf("%f %f %d\n", a.z, b.z, dist);
 	if(dx > dy)
 	{
 		ft_generate_image(obj, x, y, ft_cal_color(c1, c2, 0 / fabs(b.x - a.x)));

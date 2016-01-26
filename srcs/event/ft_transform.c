@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void 	ft_translation(t_scene *scn)
+void	ft_translation(t_scene *scn)
 {
 	scn->trans = ft_vector_sum(scn->trans, scn->v);
 	ft_apply_all_matrix(scn);

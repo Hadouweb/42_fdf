@@ -134,6 +134,7 @@ typedef struct  	s_scene
 	void			*mlx;
 	void			*win;
 	t_map 			map;
+	t_vector		**cpy;
 	int 			h;
 	t_vector 		scale;
 	t_vector		rot;
@@ -185,7 +186,8 @@ int					ft_hook_translate(int keycode, t_scene *scn);
 int					ft_hook_rotate(int keycode, t_scene *scn);
 int 				ft_hook_scale(int keycode, t_scene *scn);
 int 				ft_hook_elev(int keycode, t_scene *scn);
-int					ft_hook(int keycode, t_scene *scn);
+int					ft_event_repeat(int keycode, t_scene *scn);
+int					ft_event(int keycode, t_scene *scn);
 
 void 				ft_translation(t_scene *scn);
 void				ft_rotation(t_scene *scn);
@@ -201,5 +203,7 @@ void				ft_create_text(t_scene *scn);
 void				ft_init_color(t_scene *scn, t_colorset cs);
 t_colorset			ft_get_colorset(t_color top, t_color mid, t_color bot);
 void 				ft_exit(void);
+t_vector			**ft_cpy_map(t_map *map);
+void				ft_print_cpy(t_scene *scn);
 
 # endif

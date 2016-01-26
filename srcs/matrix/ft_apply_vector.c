@@ -1,11 +1,9 @@
 #include "fdf.h"
 
-void		ft_apply_all_vector(t_matrix m, t_scene *scn)
+void		ft_draw(t_scene *scn)
 {
 	int			x;
 	int			y;
-	t_vector	tmp;
-	t_vector	tmp2;
 
 	y = 0;
 	while (y < scn->map.y_max)
@@ -13,9 +11,7 @@ void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 		x = 0;
 		while (x < scn->map.line[y].x_max - 1)
 		{
-			tmp = ft_apply_matrix(m.n, scn->map.line[y].px[x], scn->center);
-			tmp2 = ft_apply_matrix(m.n, scn->map.line[y].px[x + 1], scn->center);
-			ft_draw_line(scn->obj, tmp, tmp2);
+			ft_draw_line(scn->obj, scn->cpy[y][x], scn->cpy[y][x + 1]);
 			x++;
 		}
 		y++;
@@ -26,13 +22,33 @@ void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 		y = 0;
 		while (y < scn->map.y_max - 1)
 		{
-			tmp = ft_apply_matrix(m.n, scn->map.line[y].px[x], scn->center);
-			tmp2 = ft_apply_matrix(m.n, scn->map.line[y + 1].px[x], scn->center);
-			ft_draw_line(scn->obj, tmp, tmp2);
+			ft_draw_line(scn->obj, scn->cpy[y][x], scn->cpy[y + 1][x]);
 			y++;
 		}
 		x++;
 	}
+}
+
+void		ft_apply_all_vector(t_matrix m, t_scene *scn)
+{
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < scn->map.y_max)
+	{
+		x = 0;
+		while (x < scn->map.line[y].x_max - 1)
+		{
+			scn->cpy[y][x] = ft_apply_matrix(m.n,
+				scn->map.line[y].px[x], scn->center);
+			scn->cpy[y][x + 1] = ft_apply_matrix(m.n,
+				scn->map.line[y].px[x + 1], scn->center);
+			x++;
+		}
+		y++;
+	}
+	ft_draw(scn);
 }
 
 t_vector	ft_apply_matrix(double m[4][4], t_vector v, t_vector center)

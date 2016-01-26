@@ -42,7 +42,7 @@ int		ft_hook_rotate(int keycode, t_scene *scn)
 	return (1);
 }
 
-int 	ft_hook_scale(int keycode, t_scene *scn)
+int		ft_hook_scale(int keycode, t_scene *scn)
 {
 	int		key;
 
@@ -56,7 +56,7 @@ int 	ft_hook_scale(int keycode, t_scene *scn)
 	return (1);
 }
 
-int 	ft_hook_elev(int keycode, t_scene *scn)
+int		ft_hook_elev(int keycode, t_scene *scn)
 {
 	int		key;
 	double	v;
@@ -72,16 +72,12 @@ int 	ft_hook_elev(int keycode, t_scene *scn)
 	return (1);
 }
 
-int		ft_hook(int keycode, t_scene *scn)
+int		ft_event_repeat(int keycode, t_scene *scn)
 {
-	printf("%d\n", keycode);
-	if (keycode == KEY_ESC)
-		exit(1);
 	ft_hook_translate(keycode, scn);
 	ft_hook_rotate(keycode, scn);
 	ft_hook_scale(keycode, scn);
 	ft_hook_elev(keycode, scn);
-
 	ft_draw_all(scn);
 	return (1);
 }
