@@ -6,7 +6,7 @@ int		ft_hook_translate(int keycode, t_scene *scn)
 	double	v;
 
 	key = 0;
-	v = 1.0 + scn->map.y_max / 10;
+	v = SIZE_W / scn->map.y_max + 20;
 	if (keycode == 123 && ++key)
 		scn->v = ft_get_vector(-v, 0.0, 0.0, 1.0);
 	else if (keycode == 124 && ++key)

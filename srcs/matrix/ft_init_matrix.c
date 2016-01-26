@@ -2,8 +2,8 @@
 
 t_matrix	ft_init_matrix(void)
 {
-	int 		i;
-	int 		j;
+	int			i;
+	int			j;
 	t_matrix	m;
 
 	i = 0;

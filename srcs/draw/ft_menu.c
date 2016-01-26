@@ -43,22 +43,22 @@ void	ft_create_text(t_scene *scn)
 	mlx_string_put(scn->mlx, scn->win, 230, 55, 0xffffff, "Translate Right : >");
 	mlx_string_put(scn->mlx, scn->win, 310, 140, 0xffffff, "Color 1 : !");
 	mlx_string_put(scn->mlx, scn->win, 310, 155, 0xffffff, "Color 2 : @");
-	mlx_string_put(scn->mlx, scn->win, 440, 140, 0xffffff, "Color 3      : #");
-	mlx_string_put(scn->mlx, scn->win, 440, 155, 0xffffff, "Color Random : $");
+	mlx_string_put(scn->mlx, scn->win, 480, 140, 0xffffff, "Color 3      : #");
+	mlx_string_put(scn->mlx, scn->win, 480, 155, 0xffffff, "Color Random : $");
 	mlx_string_put(scn->mlx, scn->win, 440, 10, 0xffffff, "Translate Zoom + : R");
 	mlx_string_put(scn->mlx, scn->win, 440, 25, 0xffffff, "Translate Zoom - : T");
 	mlx_string_put(scn->mlx, scn->win, 440, 45, 0xffffff, "Scale Z Up +     : F");
 	mlx_string_put(scn->mlx, scn->win, 440, 60, 0xffffff, "Scale Z Bot -    : G");
-	mlx_string_put(scn->mlx, scn->win, 440, 80, 0xffffff, "Exit             : ESC");
-	mlx_string_put(scn->mlx, scn->win, 700, 10, 0xffffff, "Map 1 : X");
-	mlx_string_put(scn->mlx, scn->win, 700, 25, 0xffffff, "Map 2 : C");
-	mlx_string_put(scn->mlx, scn->win, 700, 40, 0xffffff, "Map 3 : V");
-	mlx_string_put(scn->mlx, scn->win, 700, 55, 0xffffff, "Map 4 : B");
-	mlx_string_put(scn->mlx, scn->win, 700, 70, 0xffffff, "Map 5 : N");
-	mlx_string_put(scn->mlx, scn->win, 700, 85, 0xffffff, "Map 6 : M");
-	mlx_string_put(scn->mlx, scn->win, 700, 100, 0xffffff, "Map 7 : <");
-	mlx_string_put(scn->mlx, scn->win, 700, 115, 0xffffff, "Map 8 : >");
-	mlx_string_put(scn->mlx, scn->win, 700, 130, 0xffffff, "Map 9 : ?");
+	mlx_string_put(scn->mlx, scn->win, 700, 10, 0xffffff, "Map 10-2        : X");
+	mlx_string_put(scn->mlx, scn->win, 700, 25, 0xffffff, "Map 42          : C");
+	mlx_string_put(scn->mlx, scn->win, 700, 40, 0xffffff, "Map elem        : V");
+	mlx_string_put(scn->mlx, scn->win, 700, 55, 0xffffff, "Map 100-6       : B");
+	mlx_string_put(scn->mlx, scn->win, 700, 70, 0xffffff, "Map pyra        : N");
+	mlx_string_put(scn->mlx, scn->win, 700, 85, 0xffffff, "Map pyramide    : M");
+	mlx_string_put(scn->mlx, scn->win, 700, 100, 0xffffff, "Map nle-bret    : <");
+	mlx_string_put(scn->mlx, scn->win, 700, 115, 0xffffff, "Map Japan_L     : >");
+	mlx_string_put(scn->mlx, scn->win, 700, 130, 0xffffff, "Map France_XXL  : ?");
+	mlx_string_put(scn->mlx, scn->win, 700, 150, 0xffffff, "Exit            : ESC");
 }
 
 void	ft_create_menu(t_scene *scn)
@@ -140,15 +140,23 @@ int 	ft_select_map(int keycode, t_scene *scn)
 
 	key = 0;
 	if (keycode == KEY_MAP_1 && ++key)
-		map = ft_read_file("maps/42.fdf");
+		map = ft_read_file("select_map/10-2.fdf");
 	if (keycode == KEY_MAP_2 && ++key)
-		map = ft_read_file("maps/pyramide.fdf");
+		map = ft_read_file("select_map/42.fdf");
 	if (keycode == KEY_MAP_3 && ++key)
-		map = ft_read_file("maps/mars.fdf");
+		map = ft_read_file("select_map/elem.fdf");
 	if (keycode == KEY_MAP_4 && ++key)
-		map = ft_read_file("CUSTOM_Japan.OCEAN1.L.fdf");
+		map = ft_read_file("select_map/100-6.fdf");
 	if (keycode == KEY_MAP_5 && ++key)
-		map = ft_read_file("CUSTOM_France.OCEAN1.XXL.fdf");
+		map = ft_read_file("select_map/pyra.fdf");
+	if (keycode == KEY_MAP_6 && ++key)
+		map = ft_read_file("select_map/pyramide.fdf");
+	if (keycode == KEY_MAP_7 && ++key)
+		map = ft_read_file("select_map/nle-bret.fdf");
+	if (keycode == KEY_MAP_8 && ++key)
+		map = ft_read_file("select_map/Japan.L.fdf");
+	if (keycode == KEY_MAP_9 && ++key)
+		map = ft_read_file("select_map/France.XXL.fdf");
 	if (key)
 	{
 		mlx_destroy_window(scn->mlx, scn->win);
@@ -159,7 +167,6 @@ int 	ft_select_map(int keycode, t_scene *scn)
 
 int		ft_menu(int keycode, t_scene *scn)
 {
-	printf("%d\n", keycode);
 	if (keycode == KEY_MENU && scn->display_menu == 0)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)

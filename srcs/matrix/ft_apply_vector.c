@@ -1,9 +1,9 @@
-# include "fdf.h"
+#include "fdf.h"
 
 void		ft_apply_all_vector(t_matrix m, t_scene *scn)
 {
-	int 		x;
-	int 		y;
+	int			x;
+	int			y;
 	t_vector	tmp;
 	t_vector	tmp2;
 
@@ -49,32 +49,4 @@ t_vector	ft_apply_matrix(double m[4][4], t_vector v, t_vector center)
 	tmp.y += center.y;
 	tmp.color = v.color;
 	return (tmp);
-}
-
-t_vector	ft_vector_multi(t_vector a, t_vector b)
-{
-	a.x *= b.x;
-	a.y *= b.y;
-	a.z *= b.z;
-	a.w *= b.w;
-	return (a);
-}
-
-t_vector	ft_vector_sum_elev(t_vector a, t_vector b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	a.w += b.w;
-	return (a);
-}
-
-t_vector	ft_vector_sum(t_vector a, t_vector b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	a.w += b.w;
-
-	return (a);
 }

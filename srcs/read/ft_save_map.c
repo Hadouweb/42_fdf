@@ -31,15 +31,15 @@ static void		ft_list_push_back(t_line **begin_list, char *str, int size)
 
 static t_map	ft_save_map(t_line *lst, int nb_line)
 {
-	t_map 		map;
+	t_map		map;
 	t_width		*line;
-	t_line 		*l;
-	int 		i;
+	t_line		*l;
+	int			i;
 
 	line = (t_width *)ft_memalloc(nb_line * sizeof(t_width) + 1);
 	l = lst;
 	i = 0;
-	map.max = 0;	
+	map.max = 0;
 	map.min = 0;
 	while (l)
 	{
@@ -58,7 +58,7 @@ t_map			ft_read_file(char *name)
 	t_map	map;
 	t_line	*lst;
 	int		fd;
-	int 	i;
+	int		i;
 
 	lst = NULL;
 	line = NULL;
@@ -70,6 +70,8 @@ t_map			ft_read_file(char *name)
 		ft_strdel(&line);
 		i++;
 	}
+	if (i == 1)
+		ft_exit();
 	map = ft_save_map(lst, i);
 	ft_clear_list(lst);
 	return (map);

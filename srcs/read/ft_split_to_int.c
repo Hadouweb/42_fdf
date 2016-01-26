@@ -54,7 +54,7 @@ t_width		ft_split_to_int(char *s, char c, int l, t_map *map)
 	size_t		nb_word;
 	size_t		i;
 	size_t		k;
-	int 		size;
+	int			size;
 
 	i = 0;
 	k = 0;
@@ -65,14 +65,10 @@ t_width		ft_split_to_int(char *s, char c, int l, t_map *map)
 		while (s[k] && s[k] == c)
 			k++;
 		size = ft_strlen_split(&s[k], ' ');
-		line.px[i].x = i + SIZE_W / 2;
-		line.px[i].y = l + SIZE_H / 2;
-		line.px[i].z = ft_atoi(&s[k]);
-		line.px[i].w = 1;
-		if (line.px[i].z > map->max)
-			map->max = line.px[i].z;
-		if (line.px[i].z < map->min)
-			map->min = line.px[i].z;
+		line.px[i] = ft_get_vector(i + SIZE_W / 2, l + SIZE_H / 2,
+			ft_atoi(&s[k]), 1);
+		map->max = (line.px[i].z > map->max) ? line.px[i].z : map->max;
+		map->min = (line.px[i].z < map->min) ? line.px[i].z : map->min;
 		k += size;
 		i++;
 	}

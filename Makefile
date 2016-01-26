@@ -1,4 +1,4 @@
-CC = gcc -Werror -Wextra -Wall -g -O0
+CC = gcc -Werror -Wextra -Wall
 
 SRCPATH = ./srcs
 DRAWPATH = $(SRCPATH)/draw
@@ -24,8 +24,7 @@ SRC = 	$(SRCPATH)/main.c\
 		$(DRAWPATH)/ft_color.c\
 		$(HOOKPATH)/ft_hook.c\
 		$(HOOKPATH)/ft_transform.c\
-		$(UTILPATH)/ft_debug.c\
-		$(UTILPATH)/ft_clear_memory.c\
+		$(UTILPATH)/ft_utils.c\
 		$(UTILPATH)/ft_vector.c\
 		$(MATRIXPATH)/ft_apply_matrix.c\
 		$(MATRIXPATH)/ft_matrix.c\
