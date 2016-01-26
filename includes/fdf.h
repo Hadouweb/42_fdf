@@ -25,8 +25,6 @@
 
 # define KEY_ESC 53
 
-# define KEY_RESET 7
-
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
@@ -54,17 +52,16 @@
 # define KEY_COLOR_2 19
 # define KEY_COLOR_3 20
 # define KEY_COLOR_4 21
-# define KEY_COLOR_5 23
-# define KEY_COLOR_6 22
-# define KEY_COLOR_7 26
-# define KEY_COLOR_8 28
-# define KEY_COLOR_9 25
 
-# define KEY_MAP_1 8
-# define KEY_MAP_2 9
-# define KEY_MAP_3 11
-# define KEY_MAP_4 45
-# define KEY_MAP_5 46
+# define KEY_MAP_1 7
+# define KEY_MAP_2 8
+# define KEY_MAP_3 9
+# define KEY_MAP_4 11
+# define KEY_MAP_5 45
+# define KEY_MAP_6 46
+# define KEY_MAP_7 43
+# define KEY_MAP_8 47
+# define KEY_MAP_9 44
 
 typedef struct		s_save
 {

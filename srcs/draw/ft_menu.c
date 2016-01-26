@@ -35,15 +35,30 @@ void	ft_create_text(t_scene *scn)
 	mlx_string_put(scn->mlx, scn->win, 20, 60, 0xffffff, "Rotate Y Right : D");
 	mlx_string_put(scn->mlx, scn->win, 20, 80, 0xffffff, "Rotate Z Left  : Q");
 	mlx_string_put(scn->mlx, scn->win, 20, 95, 0xffffff, "Rotate Z Right : E");
+	mlx_string_put(scn->mlx, scn->win, 20, 140, 0xffffff, "Projection Iso      : I");
+	mlx_string_put(scn->mlx, scn->win, 20, 155, 0xffffff, "Projection Parallel : P");
 	mlx_string_put(scn->mlx, scn->win, 230, 10, 0xffffff, "Translate Top   : ^");
 	mlx_string_put(scn->mlx, scn->win, 230, 25, 0xffffff, "Translate Bot   : v");
 	mlx_string_put(scn->mlx, scn->win, 230, 40, 0xffffff, "Translate Left  : <");
 	mlx_string_put(scn->mlx, scn->win, 230, 55, 0xffffff, "Translate Right : >");
+	mlx_string_put(scn->mlx, scn->win, 310, 140, 0xffffff, "Color 1 : !");
+	mlx_string_put(scn->mlx, scn->win, 310, 155, 0xffffff, "Color 2 : @");
+	mlx_string_put(scn->mlx, scn->win, 440, 140, 0xffffff, "Color 3      : #");
+	mlx_string_put(scn->mlx, scn->win, 440, 155, 0xffffff, "Color Random : $");
 	mlx_string_put(scn->mlx, scn->win, 440, 10, 0xffffff, "Translate Zoom + : R");
 	mlx_string_put(scn->mlx, scn->win, 440, 25, 0xffffff, "Translate Zoom - : T");
 	mlx_string_put(scn->mlx, scn->win, 440, 45, 0xffffff, "Scale Z Up +     : F");
 	mlx_string_put(scn->mlx, scn->win, 440, 60, 0xffffff, "Scale Z Bot -    : G");
 	mlx_string_put(scn->mlx, scn->win, 440, 80, 0xffffff, "Exit             : ESC");
+	mlx_string_put(scn->mlx, scn->win, 700, 10, 0xffffff, "Map 1 : X");
+	mlx_string_put(scn->mlx, scn->win, 700, 25, 0xffffff, "Map 2 : C");
+	mlx_string_put(scn->mlx, scn->win, 700, 40, 0xffffff, "Map 3 : V");
+	mlx_string_put(scn->mlx, scn->win, 700, 55, 0xffffff, "Map 4 : B");
+	mlx_string_put(scn->mlx, scn->win, 700, 70, 0xffffff, "Map 5 : N");
+	mlx_string_put(scn->mlx, scn->win, 700, 85, 0xffffff, "Map 6 : M");
+	mlx_string_put(scn->mlx, scn->win, 700, 100, 0xffffff, "Map 7 : <");
+	mlx_string_put(scn->mlx, scn->win, 700, 115, 0xffffff, "Map 8 : >");
+	mlx_string_put(scn->mlx, scn->win, 700, 130, 0xffffff, "Map 9 : ?");
 }
 
 void	ft_create_menu(t_scene *scn)
@@ -149,13 +164,6 @@ int		ft_menu(int keycode, t_scene *scn)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)
 		scn->display_menu = 0;
-	if (keycode == KEY_RESET)
-	{
-		scn->scale = ft_get_vector(3.0, 3.0, 0.3, 1.0);
-		scn->rot = ft_get_vector(0.0, 0.0, 0.0, 1.0);
-		scn->trans = ft_get_vector(1.0, 1.0, 1.0, 1.0);
-		ft_apply_all_matrix(scn);
-	}
 	ft_color_hook(keycode, scn);
 	ft_projection(keycode, scn);
 	ft_select_map(keycode, scn);
