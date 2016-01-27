@@ -74,25 +74,25 @@ typedef struct		s_line
 	int				size;
 }					t_line;
 
-typedef	struct 		s_inc 
+typedef	struct		s_inc
 {
-	int 			e;
-	int 			inc1;
-	int 			inc2;
-	int 			dx;
-	int 			dy;
-	int 			incx;
-	int 			incy;
-	double 			x;
-	double 			y;
+	int				e;
+	int				inc1;
+	int				inc2;
+	int				dx;
+	int				dy;
+	int				incx;
+	int				incy;
+	double			x;
+	double			y;
 }					t_inc;
 
-typedef struct  	s_matrix
+typedef struct		s_matrix
 {
 	double			n[4][4];
 }					t_matrix;
 
-typedef struct 		s_color
+typedef struct		s_color
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -100,60 +100,60 @@ typedef struct 		s_color
 	unsigned char	a;
 }					t_color;
 
-typedef	struct 		s_vector
+typedef	struct		s_vector
 {
 	double			x;
 	double			y;
 	double			z;
 	double			w;
-	t_color 		color;
+	t_color			color;
 }					t_vector;
 
-typedef struct 		s_width
+typedef struct		s_width
 {
-	t_vector 		*px;
-	int 			x_max;
+	t_vector		*px;
+	int				x_max;
 }					t_width;
 
-typedef struct 		s_map
+typedef struct		s_map
 {
-	t_width 		*line;
-	int 			y_max;
-	int 			max;
-	int 			min;
+	t_width			*line;
+	int				y_max;
+	int				max;
+	int				min;
 }					t_map;
 
-typedef struct 		s_img
+typedef struct		s_img
 {
 	void			*img;
-	int 			bpp;
-	int 			sizeline;
-	int 			endian;
+	int				bpp;
+	int				sizeline;
+	int				endian;
 	char			*data;
 }					t_img;
 
-typedef	struct 		s_colorset
+typedef	struct		s_colorset
 {
-	t_color 		top;
-	t_color 		mid;
-	t_color 		bot;
+	t_color			top;
+	t_color			mid;
+	t_color			bot;
 }					t_colorset;
 
-typedef struct  	s_scene
+typedef struct		s_scene
 {
 	void			*mlx;
 	void			*win;
-	t_map 			map;
+	t_map			map;
 	t_vector		**cpy;
-	t_vector 		scale;
+	t_vector		scale;
 	t_vector		rot;
 	t_vector		trans;
 	t_vector		v;
 	t_vector		center;
-	int 			projection;
-	t_img 			*obj;
-	t_img 			*menu;
-	int 			display_menu;
+	int				projection;
+	t_img			*obj;
+	t_img			*menu;
+	int				display_menu;
 }					t_scene;
 
 void				ft_init(t_map map);
@@ -184,7 +184,8 @@ t_matrix			ft_init_matrix(void);
 t_matrix			ft_identity_matrix(void);
 
 void				ft_apply_all_vector(t_matrix m, t_scene *scn);
-t_vector			ft_apply_matrix(double m[4][4], t_vector v, t_vector center);
+t_vector			ft_apply_matrix(double m[4][4], t_vector v,
+						t_vector center);
 
 void				ft_apply_all_matrix(t_scene *scn);
 t_matrix			ft_muli_matrix(t_matrix a, t_matrix b);
@@ -200,9 +201,9 @@ int					ft_event_scale(int keycode, t_scene *scn);
 int					ft_event_elev(int keycode, t_scene *scn);
 int					ft_event_repeat(int keycode, t_scene *scn);
 
-int 				ft_event_color_(int keycode, t_scene *scn);
-int 				ft_projection(int keycode, t_scene *scn);
-int 				ft_select_map(int keycode, t_scene *scn);
+int					ft_event_color_(int keycode, t_scene *scn);
+int					ft_projection(int keycode, t_scene *scn);
+int					ft_select_map(int keycode, t_scene *scn);
 int					ft_event(int keycode, t_scene *scn);
 
 void				ft_create_text(t_scene *scn);
@@ -219,6 +220,6 @@ t_color				ft_get_color(unsigned char r, unsigned char g,
 void				ft_apply_color(t_scene *scn, t_colorset cs, int y, int x);
 void				ft_init_color(t_scene *scn, t_colorset cs);
 
-void 				ft_draw_line(t_img *obj, t_vector a, t_vector b);
+void				ft_draw_line(t_img *obj, t_vector a, t_vector b);
 
-# endif
+#endif
