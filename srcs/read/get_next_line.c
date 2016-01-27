@@ -20,7 +20,7 @@ static char		*ft_strcpy_limit(char *str, char n)
 	i = 0;
 	while (str[i] && str[i] != n)
 		i++;
-	dst = (char *)malloc(i + 1);
+	dst = (char *)ft_memalloc(i + 1);
 	i = 0;
 	while (str[i] && str[i] != n)
 	{
