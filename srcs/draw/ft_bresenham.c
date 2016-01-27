@@ -1,68 +1,71 @@
 #include "fdf.h"
 
-void 	ft_draw_line(t_img *obj, t_vector a, t_vector b)
+static void		ft_draw_x(t_inc inc, t_img *obj, t_vector a, t_vector b)
 {
-	int dx, dy, i, e;
-  	int incx, incy, inc1, inc2;
-  	double x, y;
-  	t_color	c1, c2;
+	int 	i;
 
-	dx = b.x - a.x;
-	dy = b.y - a.y;
-	incx = 1;
-	incy = 1;
-
-	if(dx < 0) 
-		dx = -dx;
-	if(dy < 0) 
-		dy = -dy;
-	if(b.x < a.x) 
-		incx = -1;
-	if(b.y < a.y) 
-		incy = -1;
-	x = a.x;
-	y = a.y;
-
-
-	c1 = b.color;
-	c2 = a.color;
-	
-	if(dx > dy)
+	i = 0;
+	inc.e = 2 * inc.dy - inc.dx;
+	inc.inc1 = 2 * (inc.dy - inc.dx);
+	inc.inc2 = 2 * inc.dy;
+	while (i < inc.dx)
 	{
-		ft_generate_image(obj, x, y, ft_cal_color(c1, c2, 0 / fabs(b.x - a.x)));
-		e = 2 * dy - dx;
-		inc1 = 2 * (dy - dx);
-		inc2 = 2 * dy;
-		for(i = 0; i < dx; i++)
+		if(inc.e >= 0)
 		{
-			if(e >= 0)
-			{
-				y += incy;
-				e += inc1;
-			}
-			else 
-				e += inc2;
-			x += incx;
-			ft_generate_image(obj, x, y, ft_cal_color(c1, c2, i / fabs(a.x - b.x)));
-	  	}
-	}
-	else
-	{
-		ft_generate_image(obj, x, y, ft_cal_color(c1, c2, 0 / fabs(b.y - a.y)));
-		e = 2 * dx - dy;
-		inc1 = 2 * (dx - dy);
-		inc2 = 2 * dx;
-		for(i = 0; i < dy; i++)
-		{
-			if(e >= 0)
-			{
-				x += incx;
-				e += inc1;
-			}
-			else 
-				e += inc2;
-			y += incy;
-			ft_generate_image(obj, x, y, ft_cal_color(c1, c2, i / fabs(a.y - b.y)));
+			inc.y += inc.incy;
+			inc.e += inc.inc1;
 		}
+		else 
+			inc.e += inc.inc2;
+		inc.x += inc.incx;
+		ft_generate_image(obj, inc.x, inc.y, ft_cal_color(b.color, a.color, i / fabs(a.x - b.x)));
+  		i++;
+  	}
+}
+
+static void		ft_draw_y(t_inc inc, t_img *obj, t_vector a, t_vector b)
+{
+	int		i;
+
+	i = 0;
+	inc.e = 2 * inc.dx - inc.dy;
+	inc.inc1 = 2 * (inc.dx - inc.dy);
+	inc.inc2 = 2 * inc.dx;
+	while (i < inc.dy)
+	{
+		if(inc.e >= 0)
+		{
+			inc.x += inc.incx;
+			inc.e += inc.inc1;
+		}
+		else 
+			inc.e += inc.inc2;
+		inc.y += inc.incy;
+		ft_generate_image(obj, inc.x, inc.y, ft_cal_color(b.color, a.color, i / fabs(a.y - b.y)));
+		i++;
 	}
+}
+
+void 			ft_draw_line(t_img *obj, t_vector a, t_vector b)
+{
+	int 	i;
+	t_inc	inc;
+
+	i = 0;
+	inc.dx = fabs(b.x - a.x);
+	inc.dy = fabs(b.y - a.y);
+	inc.incx = 1;
+	inc.incy = 1;
+
+	if(b.x < a.x) 
+		inc.incx = -1;
+	if(b.y < a.y) 
+		inc.incy = -1;
+	inc.x = a.x;
+	inc.y = a.y;
+	
+	if(inc.dx > inc.dy)
+		ft_draw_x(inc, obj, a, b);
+	else
+		ft_draw_y(inc, obj, a, b);
 }

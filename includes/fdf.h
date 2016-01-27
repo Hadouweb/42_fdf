@@ -40,11 +40,11 @@
 # define KEY_ISO 34
 # define KEY_PAR 35
 
-# define SCALE_UP 15
-# define SCALE_DOWN 17
+# define SCALE_UP 17
+# define SCALE_DOWN 15
 
-# define ELEV_UP 3
-# define ELEV_DOWN 5
+# define ELEV_UP 5
+# define ELEV_DOWN 3
 
 # define KEY_MENU 6
 
@@ -76,6 +76,19 @@ typedef struct		s_line
 	char			*str;
 	int				size;
 }					t_line;
+
+typedef	struct 		s_inc 
+{
+	int 			e;
+	int 			inc1;
+	int 			inc2;
+	int 			dx;
+	int 			dy;
+	int 			incx;
+	int 			incy;
+	double 			x;
+	double 			y;
+}					t_inc;
 
 typedef struct  	s_matrix
 {

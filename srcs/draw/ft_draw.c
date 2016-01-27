@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void		ft_draw(t_scene *scn)
+void			ft_draw(t_scene *scn)
 {
 	int			x;
 	int			y;
@@ -29,7 +29,7 @@ void		ft_draw(t_scene *scn)
 	}
 }
 
-void	ft_generate_image(t_img *obj, int x, int y, t_color color)
+void		ft_generate_image(t_img *obj, int x, int y, t_color color)
 {
 	if (y < 0 || y > SIZE_H - 1 || x < 0 || x > SIZE_W - 1)
 		return ;
@@ -49,7 +49,7 @@ t_colorset	ft_get_colorset(t_color top, t_color mid, t_color bot)
 	return (colorset);
 }
 
-void	ft_draw_all(t_scene *scn)
+void		ft_draw_all(t_scene *scn)
 {
 	ft_bzero(scn->obj->data, SIZE_W * SIZE_H * 4);
 	ft_bzero(scn->obj->data, (SIZE_W - 5) * 200 * 4);
