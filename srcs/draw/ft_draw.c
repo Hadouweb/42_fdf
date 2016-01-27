@@ -1,5 +1,34 @@
 #include "fdf.h"
 
+void		ft_draw(t_scene *scn)
+{
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < scn->map.y_max)
+	{
+		x = 0;
+		while (x < scn->map.line[y].x_max - 1)
+		{
+			ft_draw_line(scn->obj, scn->cpy[y][x], scn->cpy[y][x + 1]);
+			x++;
+		}
+		y++;
+	}
+	x = 0;
+	while (x < scn->map.line[0].x_max)
+	{
+		y = 0;
+		while (y < scn->map.y_max - 1)
+		{
+			ft_draw_line(scn->obj, scn->cpy[y][x], scn->cpy[y + 1][x]);
+			y++;
+		}
+		x++;
+	}
+}
+
 void	ft_generate_image(t_img *obj, int x, int y, t_color color)
 {
 	if (y < 0 || y > SIZE_H - 1 || x < 0 || x > SIZE_W - 1)

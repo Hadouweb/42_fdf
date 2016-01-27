@@ -43,7 +43,6 @@ void			ft_init(t_map map)
 	scn.mlx = mlx_init();
 	scn.win = mlx_new_window(scn.mlx, SIZE_W, SIZE_H, "FDF");
 	scn.map = map;
-	scn.h = 1;
 	scn.v = ft_get_vector(1.0, 1.0, 1.0, 1.0);
 	scn.center = ft_get_center(scn);
 	scn.projection = 1;
@@ -55,7 +54,6 @@ void			ft_init(t_map map)
 			ft_get_color(0, 150, 0, 0),
 			ft_get_color(0, 0, 200, 0)));
 	scn.display_menu = 0;
-	scn.already_display = 0;
 	scn.cpy = ft_cpy_map(&scn.map);
 	ft_scale(&scn);
 	ft_draw_all(&scn);

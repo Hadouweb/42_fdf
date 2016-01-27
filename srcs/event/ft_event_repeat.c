@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int		ft_hook_translate(int keycode, t_scene *scn)
+int		ft_event_translate(int keycode, t_scene *scn)
 {
 	int		key;
 	double	v;
@@ -20,7 +20,7 @@ int		ft_hook_translate(int keycode, t_scene *scn)
 	return (1);
 }
 
-int		ft_hook_rotate(int keycode, t_scene *scn)
+int		ft_event_rotate(int keycode, t_scene *scn)
 {
 	int		key;
 
@@ -42,7 +42,7 @@ int		ft_hook_rotate(int keycode, t_scene *scn)
 	return (1);
 }
 
-int		ft_hook_scale(int keycode, t_scene *scn)
+int		ft_event_scale(int keycode, t_scene *scn)
 {
 	int		key;
 
@@ -56,7 +56,7 @@ int		ft_hook_scale(int keycode, t_scene *scn)
 	return (1);
 }
 
-int		ft_hook_elev(int keycode, t_scene *scn)
+int		ft_event_elev(int keycode, t_scene *scn)
 {
 	int		key;
 	double	v;
@@ -74,10 +74,10 @@ int		ft_hook_elev(int keycode, t_scene *scn)
 
 int		ft_event_repeat(int keycode, t_scene *scn)
 {
-	ft_hook_translate(keycode, scn);
-	ft_hook_rotate(keycode, scn);
-	ft_hook_scale(keycode, scn);
-	ft_hook_elev(keycode, scn);
+	ft_event_translate(keycode, scn);
+	ft_event_rotate(keycode, scn);
+	ft_event_scale(keycode, scn);
+	ft_event_elev(keycode, scn);
 	ft_draw_all(scn);
 	return (1);
 }

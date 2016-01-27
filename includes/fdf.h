@@ -135,7 +135,6 @@ typedef struct  	s_scene
 	void			*win;
 	t_map 			map;
 	t_vector		**cpy;
-	int 			h;
 	t_vector 		scale;
 	t_vector		rot;
 	t_vector		trans;
@@ -145,24 +144,25 @@ typedef struct  	s_scene
 	t_img 			*obj;
 	t_img 			*menu;
 	int 			display_menu;
-	int 			already_display;
 }					t_scene;
 
 void				ft_init(t_map map);
 
-t_map				ft_read_file(char *name);
+t_vector			ft_get_vector(double x, double y, double z, double w);
+t_vector			ft_get_center(t_scene scn);
+t_vector			ft_vector_multi(t_vector a, t_vector b);
+t_vector			ft_vector_sum_elev(t_vector a, t_vector b);
+t_vector			ft_vector_sum(t_vector a, t_vector b);
+
+void				ft_exit(void);
+void				ft_clear_list(t_line *lst);
+t_vector			**ft_cpy_map(t_map *map);
+
 int					get_next_line(int const fd, char **line);
+
 t_width				ft_split_to_int(char *s, char c, int l, t_map *map);
 
-t_vector			ft_get_vector(double x, double y, double z, double w);
-t_vector    		ft_get_center(t_scene scn);
-
-void				ft_print_map(t_map map);
-void				ft_print_matrix(double m[4][4]);
-void				ft_print_vector(t_vector v);
-void				ft_clear_list(t_line *lst);
-
-void 				ft_draw_line(t_img *obj, t_vector a, t_vector b);
+t_map				ft_read_file(char *name);
 
 t_matrix			ft_scale_matrix(t_vector v);
 t_matrix			ft_translation_matrix(t_vector v);
@@ -175,35 +175,40 @@ t_matrix			ft_identity_matrix(void);
 
 void				ft_apply_all_vector(t_matrix m, t_scene *scn);
 t_vector			ft_apply_matrix(double m[4][4], t_vector v, t_vector center);
-t_vector			ft_vector_multi(t_vector a, t_vector b);
-t_vector			ft_vector_sum_elev(t_vector a, t_vector b);
-t_vector			ft_vector_sum(t_vector a, t_vector b);
 
 void				ft_apply_all_matrix(t_scene *scn);
 t_matrix			ft_muli_matrix(t_matrix a, t_matrix b);
 
-int					ft_hook_translate(int keycode, t_scene *scn);
-int					ft_hook_rotate(int keycode, t_scene *scn);
-int 				ft_hook_scale(int keycode, t_scene *scn);
-int 				ft_hook_elev(int keycode, t_scene *scn);
-int					ft_event_repeat(int keycode, t_scene *scn);
-int					ft_event(int keycode, t_scene *scn);
-
-void 				ft_translation(t_scene *scn);
+void				ft_translation(t_scene *scn);
 void				ft_rotation(t_scene *scn);
 void				ft_scale(t_scene *scn);
 void				ft_scale_elev(t_scene *scn);
-t_color				ft_cal_color(t_color a, t_color b, double pos);
-t_color 			ft_get_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-int					ft_menu(int keycode, t_scene *scn);
-void				ft_generate_image(t_img *obj, int x, int y, t_color color);
-void				ft_create_menu(t_scene *scn);
-void				ft_draw_all(t_scene *scn);
+
+int					ft_event_translate(int keycode, t_scene *scn);
+int					ft_event_rotate(int keycode, t_scene *scn);
+int					ft_event_scale(int keycode, t_scene *scn);
+int					ft_event_elev(int keycode, t_scene *scn);
+int					ft_event_repeat(int keycode, t_scene *scn);
+
+int 				ft_event_color_(int keycode, t_scene *scn);
+int 				ft_projection(int keycode, t_scene *scn);
+int 				ft_select_map(int keycode, t_scene *scn);
+int					ft_event(int keycode, t_scene *scn);
+
 void				ft_create_text(t_scene *scn);
-void				ft_init_color(t_scene *scn, t_colorset cs);
+void				ft_create_menu(t_scene *scn);
+
+void				ft_draw(t_scene *scn);
+void				ft_generate_image(t_img *obj, int x, int y, t_color color);
 t_colorset			ft_get_colorset(t_color top, t_color mid, t_color bot);
-void 				ft_exit(void);
-t_vector			**ft_cpy_map(t_map *map);
-void				ft_print_cpy(t_scene *scn);
+void				ft_draw_all(t_scene *scn);
+
+t_color				ft_cal_color(t_color a, t_color b, double pos);
+t_color				ft_get_color(unsigned char r, unsigned char g,
+						unsigned char b, unsigned char a);
+void				ft_apply_color(t_scene *scn, t_colorset cs, int y, int x);
+void				ft_init_color(t_scene *scn, t_colorset cs);
+
+void 				ft_draw_line(t_img *obj, t_vector a, t_vector b);
 
 # endif

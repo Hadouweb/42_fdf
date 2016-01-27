@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int 	ft_color_hook(int keycode, t_scene *scn)
+int 	ft_event_color(int keycode, t_scene *scn)
 {
 	t_colorset 	colorset;
 	int 		key;
@@ -85,7 +85,7 @@ int		ft_event(int keycode, t_scene *scn)
 		scn->display_menu = 1;
 	else if (keycode == KEY_MENU && scn->display_menu == 1)
 		scn->display_menu = 0;
-	ft_color_hook(keycode, scn);
+	ft_event_color(keycode, scn);
 	ft_projection(keycode, scn);
 	ft_select_map(keycode, scn);
 	ft_draw_all(scn);
