@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void			ft_draw(t_scene *scn)
+void		ft_draw(t_scene *scn)
 {
 	int			x;
 	int			y;

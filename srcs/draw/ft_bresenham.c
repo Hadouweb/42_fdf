@@ -14,7 +14,7 @@
 
 static void		ft_draw_x(t_inc inc, t_img *obj, t_vector a, t_vector b)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	inc.e = 2 * inc.dy - inc.dx;
@@ -22,17 +22,18 @@ static void		ft_draw_x(t_inc inc, t_img *obj, t_vector a, t_vector b)
 	inc.inc2 = 2 * inc.dy;
 	while (i < inc.dx)
 	{
-		if(inc.e >= 0)
+		if (inc.e >= 0)
 		{
 			inc.y += inc.incy;
 			inc.e += inc.inc1;
 		}
-		else 
+		else
 			inc.e += inc.inc2;
 		inc.x += inc.incx;
-		ft_generate_image(obj, inc.x, inc.y, ft_cal_color(b.color, a.color, i / fabs(a.x - b.x)));
-  		i++;
-  	}
+		ft_generate_image(obj, inc.x, inc.y,
+			ft_cal_color(b.color, a.color, i / fabs(a.x - b.x)));
+		i++;
+	}
 }
 
 static void		ft_draw_y(t_inc inc, t_img *obj, t_vector a, t_vector b)
@@ -45,22 +46,23 @@ static void		ft_draw_y(t_inc inc, t_img *obj, t_vector a, t_vector b)
 	inc.inc2 = 2 * inc.dx;
 	while (i < inc.dy)
 	{
-		if(inc.e >= 0)
+		if (inc.e >= 0)
 		{
 			inc.x += inc.incx;
 			inc.e += inc.inc1;
 		}
-		else 
+		else
 			inc.e += inc.inc2;
 		inc.y += inc.incy;
-		ft_generate_image(obj, inc.x, inc.y, ft_cal_color(b.color, a.color, i / fabs(a.y - b.y)));
+		ft_generate_image(obj, inc.x, inc.y,
+			ft_cal_color(b.color, a.color, i / fabs(a.y - b.y)));
 		i++;
 	}
 }
 
-void 			ft_draw_line(t_img *obj, t_vector a, t_vector b)
+void			ft_draw_line(t_img *obj, t_vector a, t_vector b)
 {
-	int 	i;
+	int		i;
 	t_inc	inc;
 
 	i = 0;
@@ -68,15 +70,13 @@ void 			ft_draw_line(t_img *obj, t_vector a, t_vector b)
 	inc.dy = fabs(b.y - a.y);
 	inc.incx = 1;
 	inc.incy = 1;
-
-	if(b.x < a.x) 
+	if (b.x < a.x)
 		inc.incx = -1;
-	if(b.y < a.y) 
+	if (b.y < a.y)
 		inc.incy = -1;
 	inc.x = a.x;
 	inc.y = a.y;
-	
-	if(inc.dx > inc.dy)
+	if (inc.dx > inc.dy)
 		ft_draw_x(inc, obj, a, b);
 	else
 		ft_draw_y(inc, obj, a, b);

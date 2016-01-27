@@ -60,8 +60,6 @@
 # define KEY_MAP_5 45
 # define KEY_MAP_6 46
 # define KEY_MAP_7 43
-# define KEY_MAP_8 47
-# define KEY_MAP_9 44
 
 typedef struct		s_save
 {
